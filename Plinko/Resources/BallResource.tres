@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c2rjxb80b8xmr"]
+
+[ext_resource type="PackedScene" uid="uid://bwydb8fqxmd4f" path="res://Prefabs/Ball.tscn" id="1_b1g7x"]
+[ext_resource type="Script" path="res://Scripts/BallResource.gd" id="1_r2q6s"]
+[ext_resource type="Texture2D" uid="uid://cinp0wruuokno" path="res://Assets/pinball-texture.png" id="2_u5tt0"]
+
+[resource]
+script = ExtResource("1_r2q6s")
+ballTexture = ExtResource("2_u5tt0")
+ballPrefab = ExtResource("1_b1g7x")

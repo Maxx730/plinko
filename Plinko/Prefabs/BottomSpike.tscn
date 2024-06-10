@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbe5sam6evhr8"]
+
+[ext_resource type="Texture2D" uid="uid://qo518ora7hlr" path="res://Assets/divider-pipe-texture.png" id="1_w3s83"]
+
+[node name="BottomSpike" type="StaticBody2D" groups=["Wall"]]
+position = Vector2(0, 176)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_w3s83")
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -35, 16, -19, 16, 9, 32, 24, 32, 28, -32, 28, -32, 24, -16, 9, -16, -19)

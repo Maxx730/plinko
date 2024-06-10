@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://buf4vn82uhxoh"]
+
+[ext_resource type="Script" path="res://Scripts/Bumper.gd" id="1_htdcc"]
+[ext_resource type="Texture2D" uid="uid://dr71kjneahqct" path="res://Assets/bumper-sheet.png" id="2_p3jpr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf02u"]
+atlas = ExtResource("2_p3jpr")
+region = Rect2(0, 0, 23, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxhdc"]
+atlas = ExtResource("2_p3jpr")
+region = Rect2(23, 0, 23, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jtnf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf02u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxhdc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jos5f"]
+size = Vector2(44.0974, 15.2957)
+
+[node name="Bumper" type="Node2D"]
+position = Vector2(172, 0)
+script = ExtResource("1_htdcc")
+
+[node name="Reset" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jtnf7")
+
+[node name="Base" type="StaticBody2D" parent="."]
+
+[node name="Collider" type="CollisionPolygon2D" parent="Base"]
+polygon = PackedVector2Array(6, -38, -18, 8, -18, 14, 7, 38, 20, 38, 20, -38)
+
+[node name="Button" type="StaticBody2D" parent="." groups=["Bumper"]]
+
+[node name="Collider" type="CollisionShape2D" parent="Button"]
+position = Vector2(-9.82677, -20.6413)
+rotation = -1.01205
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_jos5f")
+
+[connection signal="timeout" from="Reset" to="." method="on_bumper_reset"]

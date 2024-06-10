@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://w003ccdhswcn"]
+
+[ext_resource type="PackedScene" uid="uid://c5gl60ce8ygv6" path="res://Prefabs/Peg.tscn" id="1_ok0os"]
+[ext_resource type="Texture2D" uid="uid://ctsep2xd0px1b" path="res://Assets/diamond-peg-top-texture-export.png" id="2_y6s1o"]
+
+[node name="Peg" instance=ExtResource("1_ok0os")]
+maxHits = 5
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_y6s1o")
+
+[node name="Count" parent="." index="4"]
+text = "5"

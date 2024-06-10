@@ -1,0 +1,285 @@
+[gd_scene load_steps=20 format=3 uid="uid://berndia6ki7gm"]
+
+[ext_resource type="Script" path="res://Scripts/GameCamera.gd" id="1_8k5e0"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_uyman"]
+[ext_resource type="Script" path="res://Scripts/Board.gd" id="1_xkcxm"]
+[ext_resource type="PackedScene" uid="uid://c5gl60ce8ygv6" path="res://Prefabs/Peg.tscn" id="1_yhjjj"]
+[ext_resource type="Texture2D" uid="uid://bv4idajlk1kgg" path="res://Assets/tiled-background-texture.png" id="3_v4h8v"]
+[ext_resource type="Script" path="res://Scripts/AnimatedTiles.gd" id="4_uqknk"]
+[ext_resource type="PackedScene" uid="uid://djexdjljru8lp" path="res://Prefabs/GoldPeg.tscn" id="5_5birv"]
+[ext_resource type="Script" path="res://Scripts/Despawn.gd" id="7_ffd3c"]
+[ext_resource type="Script" path="res://Scripts/Spawn.gd" id="7_o34mc"]
+[ext_resource type="PackedScene" uid="uid://bwydb8fqxmd4f" path="res://Prefabs/Ball.tscn" id="9_1x746"]
+[ext_resource type="FontFile" uid="uid://bg7qwmp5b6lgd" path="res://Assets/honeyblot_caps.otf" id="9_nkfpm"]
+[ext_resource type="Script" path="res://Scripts/Hits.gd" id="10_djgno"]
+[ext_resource type="Script" path="res://Scripts/Round.gd" id="10_f6dpg"]
+[ext_resource type="Texture2D" uid="uid://cinp0wruuokno" path="res://Assets/pinball-texture.png" id="11_2s2n4"]
+[ext_resource type="Script" path="res://Scripts/Lives.gd" id="15_4omp2"]
+[ext_resource type="PackedScene" uid="uid://w003ccdhswcn" path="res://Prefabs/DiamondPeg.tscn" id="15_nlxpv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jngas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_421ba"]
+size = Vector2(321, 75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_druau"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+anti_aliasing = false
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_uyman")
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("1_8k5e0")
+
+[node name="Board" type="Node2D" parent="."]
+script = ExtResource("1_xkcxm")
+
+[node name="Pegs" type="Node" parent="Board"]
+
+[node name="Peg" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(0, 42)
+maxHits = 1
+
+[node name="Peg3" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-64, 42)
+maxHits = 1
+
+[node name="Peg4" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-128, 42)
+maxHits = 1
+
+[node name="Peg2" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(64, 42)
+maxHits = 1
+
+[node name="Peg5" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(128, 42)
+maxHits = 1
+
+[node name="Peg6" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(0, 124)
+maxHits = 1
+
+[node name="Peg7" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-64, 124)
+maxHits = 1
+
+[node name="Peg8" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-128, 124)
+maxHits = 1
+
+[node name="Peg9" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(64, 124)
+maxHits = 1
+
+[node name="Peg10" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(128, 124)
+maxHits = 1
+
+[node name="Peg11" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(0, -89)
+maxHits = 1
+
+[node name="Peg13" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-128, -89)
+maxHits = 1
+
+[node name="Peg15" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(128, -89)
+maxHits = 1
+
+[node name="Peg16" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(32, -50)
+maxHits = 1
+
+[node name="Peg17" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-32, -50)
+maxHits = 1
+
+[node name="Peg18" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-96, -50)
+maxHits = 1
+
+[node name="Peg19" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(96, -50)
+maxHits = 1
+
+[node name="Peg24" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(32, -127)
+maxHits = 1
+
+[node name="Peg25" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-32, -127)
+maxHits = 1
+
+[node name="Peg26" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-96, -127)
+maxHits = 1
+
+[node name="Peg27" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(96, -127)
+maxHits = 1
+
+[node name="Peg20" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(32, 83)
+maxHits = 1
+
+[node name="Peg21" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-32, 83)
+maxHits = 1
+
+[node name="Peg22" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(-96, 83)
+maxHits = 1
+
+[node name="Peg28" parent="Board/Pegs" instance=ExtResource("5_5birv")]
+position = Vector2(-32, -6)
+
+[node name="Peg29" parent="Board/Pegs" instance=ExtResource("5_5birv")]
+position = Vector2(0, -6)
+
+[node name="Peg30" parent="Board/Pegs" instance=ExtResource("5_5birv")]
+position = Vector2(32, -6)
+
+[node name="Peg12" parent="Board/Pegs" instance=ExtResource("15_nlxpv")]
+position = Vector2(-64, -88)
+
+[node name="Peg14" parent="Board/Pegs" instance=ExtResource("15_nlxpv")]
+position = Vector2(64, -88)
+
+[node name="Peg23" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
+position = Vector2(96, 83)
+maxHits = 1
+
+[node name="AnimatedTiles" type="Sprite2D" parent="Board"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("3_v4h8v")
+region_enabled = true
+region_rect = Rect2(814775, -829743, 330, 490)
+script = ExtResource("4_uqknk")
+offsetSpeed = 0.561
+offsetDir = Vector2(1, -1)
+
+[node name="WallLeft" type="StaticBody2D" parent="Board" groups=["Wall"]]
+position = Vector2(-160, -64)
+rotation = 1.5708
+
+[node name="Collider" type="CollisionShape2D" parent="Board/WallLeft"]
+shape = SubResource("WorldBoundaryShape2D_jngas")
+
+[node name="WallRight" type="StaticBody2D" parent="Board" groups=["Wall"]]
+position = Vector2(160, -64)
+rotation = -1.5708
+
+[node name="Collider" type="CollisionShape2D" parent="Board/WallRight"]
+shape = SubResource("WorldBoundaryShape2D_jngas")
+
+[node name="Spawn" type="Area2D" parent="Board"]
+position = Vector2(0, -201)
+script = ExtResource("7_o34mc")
+
+[node name="Collider" type="CollisionShape2D" parent="Board/Spawn"]
+shape = SubResource("RectangleShape2D_421ba")
+
+[node name="Despawn" type="Area2D" parent="Board"]
+position = Vector2(0, 283)
+script = ExtResource("7_ffd3c")
+
+[node name="Collider" type="CollisionShape2D" parent="Board/Despawn"]
+shape = SubResource("RectangleShape2D_421ba")
+
+[node name="Ball" parent="." instance=ExtResource("9_1x746")]
+position = Vector2(0, -176)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Round" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -176.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 64.0
+grow_horizontal = 0
+script = ExtResource("10_f6dpg")
+
+[node name="Vertical" type="VBoxContainer" parent="UI/Round"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hits" type="Label" parent="UI/Round/Vertical"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.552941)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("9_nkfpm")
+text = "0 HITS"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("10_djgno")
+
+[node name="Unique" type="Label" parent="UI/Round/Vertical"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.552941)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("9_nkfpm")
+text = "0 Unique pegs"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Lives" type="Panel" parent="UI"]
+texture_filter = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 80.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_druau")
+script = ExtResource("15_4omp2")
+
+[node name="Margin" type="MarginContainer" parent="UI/Lives"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -8.0
+offset_right = 28.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Horizontal" type="HBoxContainer" parent="UI/Lives/Margin"]
+layout_mode = 2
+
+[node name="0" type="TextureRect" parent="UI/Lives/Margin/Horizontal"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("11_2s2n4")
+
+[node name="Label" type="Label" parent="UI/Lives/Margin/Horizontal"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("9_nkfpm")
+text = " X 3"
+
+[connection signal="body_entered" from="Board/Despawn" to="Board/Despawn" method="OnDespawnEntered"]

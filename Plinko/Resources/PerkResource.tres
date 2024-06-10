@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dt6hcjvibx0ys"]
+
+[ext_resource type="Script" path="res://Scripts/PerkResource.gd" id="1_v0eax"]
+
+[resource]
+script = ExtResource("1_v0eax")
+perkName = "General Perk"
+perkDescription = "Perk Description"

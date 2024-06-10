@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnsx6gxesiqlv"]
+
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="1_sdv0k"]
+[ext_resource type="Script" path="res://Scripts/Damage.gd" id="2_aqvp4"]
+
+[node name="Damage" type="Label"]
+texture_filter = 1
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("1_sdv0k")
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_aqvp4")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://djexdjljru8lp"]
+
+[ext_resource type="PackedScene" uid="uid://c5gl60ce8ygv6" path="res://Prefabs/Peg.tscn" id="1_wnkut"]
+[ext_resource type="Texture2D" uid="uid://d4nfdgnm6apme" path="res://Assets/gold-peg-top-texture.png" id="2_wpd15"]
+
+[node name="Peg" instance=ExtResource("1_wnkut")]
+maxHits = 5
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_wpd15")

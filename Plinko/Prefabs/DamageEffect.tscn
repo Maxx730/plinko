@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddhco53t4m43x"]
+
+[ext_resource type="Script" path="res://Scripts/DamageEffect.gd" id="1_wdhvy"]
+[ext_resource type="FontFile" uid="uid://bhcx358q505te" path="res://Assets/Awkward.ttf" id="2_j8xmj"]
+
+[node name="DamageEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -277.0
+offset_top = -135.0
+offset_right = -237.0
+offset_bottom = -95.0
+script = ExtResource("1_wdhvy")
+damageText = "+1024"
+bounceAmplitude = 2.0
+textFont = ExtResource("2_j8xmj")
+
+[node name="hor" type="HBoxContainer" parent="."]
+layout_mode = 0
+theme_override_constants/separation = 0
+
+[node name="0" type="Label" parent="hor"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_j8xmj")
+text = "+"
+
+[node name="1" type="Label" parent="hor"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_j8xmj")
+text = "1"
+
+[node name="2" type="Label" parent="hor"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_j8xmj")
+text = "0"
+
+[node name="3" type="Label" parent="hor"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_j8xmj")
+text = "2"
+
+[node name="4" type="Label" parent="hor"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_j8xmj")
+text = "4"

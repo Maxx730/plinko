@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3eqi7y5ihkox"]
+
+[ext_resource type="Script" path="res://Scripts/Pegs/Bomb.gd" id="1_cikjn"]
+[ext_resource type="Texture2D" uid="uid://csbduibr10xxi" path="res://Assets/Pegs/peg-bomb.png" id="2_5jln0"]
+[ext_resource type="AudioStream" uid="uid://b2skj1ip6u5jo" path="res://Assets/SFX/Hit_3.wav" id="3_fgg63"]
+[ext_resource type="Texture2D" uid="uid://c0ulc7xlh2j4v" path="res://Assets/blood-particle-texture.png" id="4_6c8by"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pqav"]
+radius = 11.0
+
+[sub_resource type="Gradient" id="Gradient_bfk1w"]
+offsets = PackedFloat32Array(0, 0.23913, 0.570652, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.5, 0, 1, 1, 0.9, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6unmw"]
+gradient = SubResource("Gradient_bfk1w")
+
+[sub_resource type="Curve" id="Curve_g21ji"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.192997), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_exb24"]
+curve = SubResource("Curve_g21ji")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v8lpg"]
+particle_flag_disable_z = true
+spread = 90.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_exb24")
+color_ramp = SubResource("GradientTexture1D_6unmw")
+
+[node name="Bomb" type="StaticBody2D"]
+script = ExtResource("1_cikjn")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+light_mask = 2
+z_index = 2
+texture_filter = 1
+texture = ExtResource("2_5jln0")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5pqav")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fgg63")
+volume_db = -50.0
+
+[node name="Fuse" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(-5, -4)
+
+[node name="Sparks" type="GPUParticles2D" parent="Fuse"]
+rotation = 4.71239
+process_material = SubResource("ParticleProcessMaterial_v8lpg")
+texture = ExtResource("4_6c8by")
+speed_scale = 5.0

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dlgmduajjao00"]
+
+[ext_resource type="Texture2D" uid="uid://df1q4wtpk03t8" path="res://Assets/Balls/ball-explode.png" id="2_g1fkr"]
+[ext_resource type="Script" path="res://Scripts/BallResource.gd" id="3_66bou"]
+
+[resource]
+script = ExtResource("3_66bou")
+ballTexture = ExtResource("2_g1fkr")
+ballImpactType = 2

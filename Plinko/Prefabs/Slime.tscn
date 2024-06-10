@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmj3f88a4vi7q"]
+
+[ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_0aibn"]
+[ext_resource type="Texture2D" uid="uid://16g4w7uh47xp" path="res://Assets/monochrome_32x32.png" id="2_rd2rg"]
+
+[node name="Slime" type="Node"]
+script = ExtResource("1_0aibn")
+spriteTexture = ExtResource("2_rd2rg")
+monsterName = "Slime"
+monsterDescription = "Sliding into your DMs with a snail trail of sludge."
+maxHitpoints = 120

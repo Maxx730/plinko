@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cavtb7v10ehj3"]
+
+[ext_resource type="Texture2D" uid="uid://bmnojvxiaf15d" path="res://Assets/side-bounch-texture.png" id="1_6grio"]
+
+[node name="SideBounce" type="StaticBody2D"]
+visible = false
+position = Vector2(-144, -64)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_6grio")
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15, -16, 1, 0, -15, 16)

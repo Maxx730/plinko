@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmutl5u1w6fat"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/Begin.gd" id="1_n2fy8"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="2_i7xlu"]
+[ext_resource type="Texture2D" uid="uid://dj30n4mwpja7h" path="res://Assets/card-top.png" id="3_20wcp"]
+[ext_resource type="Texture2D" uid="uid://cim5ktjgmbjxm" path="res://Assets/button-normal.png" id="4_c50cl"]
+[ext_resource type="Texture2D" uid="uid://bbmdyc1x12ttn" path="res://Assets/target-icon.png" id="5_ae3x8"]
+[ext_resource type="Texture2D" uid="uid://brb8a5el202br" path="res://Assets/card-bottom.png" id="5_itipr"]
+[ext_resource type="Texture2D" uid="uid://3w7wuibitdnk" path="res://Assets/button-pressedl.png" id="5_qfbg3"]
+
+[node name="Begin" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n2fy8")
+
+[node name="Vert" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.5
+offset_top = -56.0
+offset_right = 116.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="TextureRect" parent="Vert"]
+layout_mode = 2
+texture = ExtResource("3_20wcp")
+
+[node name="Round" type="Label" parent="Vert/Top"]
+layout_mode = 2
+offset_left = 73.5
+offset_top = 29.0
+offset_right = 167.5
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_i7xlu")
+text = "Round 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Bottom" type="TextureRect" parent="Vert"]
+layout_mode = 2
+texture = ExtResource("5_itipr")
+
+[node name="List" type="VBoxContainer" parent="Vert/Bottom"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Message" type="Label" parent="Vert/Bottom/List"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_i7xlu")
+text = "SCORE HIGHER THAN"
+horizontal_alignment = 1
+
+[node name="Goal" type="HBoxContainer" parent="Vert/Bottom/List"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Icon" type="TextureRect" parent="Vert/Bottom/List/Goal"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_ae3x8")
+expand_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Vert/Bottom/List/Goal"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 4
+
+[node name="Score" type="Label" parent="Vert/Bottom/List/Goal/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_i7xlu")
+theme_override_font_sizes/font_size = 32
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Begin" type="TextureButton" parent="Vert"]
+layout_mode = 2
+texture_normal = ExtResource("4_c50cl")
+texture_pressed = ExtResource("5_qfbg3")
+
+[node name="Label" type="Label" parent="Vert/Begin"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_i7xlu")
+text = "BEGIN"

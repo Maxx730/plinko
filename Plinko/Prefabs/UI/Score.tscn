@@ -1,0 +1,157 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6863c6nikbtj"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/Score.gd" id="1_38igu"]
+[ext_resource type="Texture2D" uid="uid://dj30n4mwpja7h" path="res://Assets/card-top.png" id="1_twche"]
+[ext_resource type="Texture2D" uid="uid://brb8a5el202br" path="res://Assets/card-bottom.png" id="2_cn4t8"]
+[ext_resource type="Texture2D" uid="uid://cim5ktjgmbjxm" path="res://Assets/button-normal.png" id="3_eeg4f"]
+[ext_resource type="Texture2D" uid="uid://3w7wuibitdnk" path="res://Assets/button-pressedl.png" id="4_huxqs"]
+[ext_resource type="Texture2D" uid="uid://bbmdyc1x12ttn" path="res://Assets/target-icon.png" id="5_rgpyj"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="5_wdg67"]
+[ext_resource type="Script" path="res://Scripts/WackyLabel.gd" id="6_4e5eg"]
+[ext_resource type="Texture2D" uid="uid://r40floq5g72q" path="res://Assets/button-disabled.png" id="9_xhhkt"]
+
+[node name="Score" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_38igu")
+
+[node name="List" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="TextureRect" parent="List"]
+layout_mode = 2
+texture = ExtResource("1_twche")
+
+[node name="Round" type="Label" parent="List/Top"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -5.0
+offset_right = 37.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+text = "Round Total"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Middle" type="TextureRect" parent="List"]
+layout_mode = 2
+texture = ExtResource("2_cn4t8")
+
+[node name="Score" type="Label" parent="List/Middle"]
+layout_mode = 2
+offset_top = 54.0
+offset_right = 241.0
+offset_bottom = 122.0
+pivot_offset = Vector2(118.5, 28)
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("6_4e5eg")
+animationSpeed = 15.0
+
+[node name="Margin" type="MarginContainer" parent="List/Middle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Stats" type="VBoxContainer" parent="List/Middle/Margin"]
+layout_mode = 2
+
+[node name="Hor" type="VBoxContainer" parent="List/Middle/Margin/Stats"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="List/Middle/Margin/Stats/Hor"]
+layout_mode = 2
+texture = ExtResource("5_rgpyj")
+stretch_mode = 3
+
+[node name="Goal" type="Label" parent="List/Middle/Margin/Stats/Hor"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_wdg67")
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="Continue" type="TextureButton" parent="List"]
+layout_mode = 2
+texture_normal = ExtResource("3_eeg4f")
+texture_pressed = ExtResource("4_huxqs")
+texture_disabled = ExtResource("9_xhhkt")
+
+[node name="Label" type="Label" parent="List/Continue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+text = "CONTINUE"
+
+[node name="Quit" type="TextureButton" parent="List"]
+layout_mode = 2
+texture_normal = ExtResource("3_eeg4f")
+texture_pressed = ExtResource("4_huxqs")
+
+[node name="Label" type="Label" parent="List/Quit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+text = "QUIT"
+horizontal_alignment = 1

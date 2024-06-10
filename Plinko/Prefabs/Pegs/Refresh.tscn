@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3pwll8rwujpq"]
+
+[ext_resource type="Script" path="res://Scripts/Pegs/Refresh.gd" id="1_mu05s"]
+[ext_resource type="Texture2D" uid="uid://ca1tgflp1jtgw" path="res://Assets/peg-top-texture.png" id="2_u7knw"]
+[ext_resource type="Texture2D" uid="uid://dq1ybi65lqivf" path="res://Assets/peg-refresh-texture.png" id="3_0kqam"]
+[ext_resource type="AudioStream" uid="uid://b2skj1ip6u5jo" path="res://Assets/SFX/Hit_3.wav" id="4_xinqo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pqav"]
+radius = 11.0
+
+[node name="Peg" type="StaticBody2D"]
+modulate = Color(0.54902, 0.745098, 0, 1)
+script = ExtResource("1_mu05s")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+light_mask = 2
+z_index = 2
+texture_filter = 1
+texture = ExtResource("2_u7knw")
+
+[node name="Refresh" type="Sprite2D" parent="."]
+light_mask = 2
+z_index = 2
+texture_filter = 1
+texture = ExtResource("3_0kqam")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5pqav")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xinqo")
+volume_db = -50.0

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://qdgu3jcftgf8"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/Loading.gd" id="1_6fpp3"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="1_nkvj5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpdb8"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0ha84"]
+color = Color(1, 1, 1, 1)
+thickness = 4
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_6fpp3")
+
+[node name="List" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -20.0
+offset_right = 83.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Progress" type="ProgressBar" parent="List"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_cpdb8")
+theme_override_styles/fill = SubResource("StyleBoxLine_0ha84")
+show_percentage = false
+
+[node name="Label" type="Label" parent="List"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_nkvj5")
+text = "Loading..."
+horizontal_alignment = 1

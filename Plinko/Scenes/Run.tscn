@@ -1,0 +1,1460 @@
+[gd_scene load_steps=86 format=3 uid="uid://b82l3c5ree5p3"]
+
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_24cpj"]
+[ext_resource type="Script" path="res://Scripts/Board.gd" id="1_vi225"]
+[ext_resource type="Script" path="res://Scripts/PegGroup.gd" id="2_6v113"]
+[ext_resource type="PackedScene" uid="uid://c5gl60ce8ygv6" path="res://Prefabs/Peg.tscn" id="2_30q40"]
+[ext_resource type="FontFile" uid="uid://btdu83rg8saxp" path="res://Assets/QuinqueFive.otf" id="2_fwsug"]
+[ext_resource type="Script" path="res://Scripts/Spawn.gd" id="2_wqoju"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="3_r13tp"]
+[ext_resource type="Script" path="res://Scripts/Despawn.gd" id="3_uh8ht"]
+[ext_resource type="Script" path="res://Scripts/GameCamera.gd" id="5_yq2km"]
+[ext_resource type="Texture2D" uid="uid://bga1vdvtirrxk" path="res://Assets/ball-movement-texture.png" id="6_hf3qp"]
+[ext_resource type="PackedScene" uid="uid://bbe5sam6evhr8" path="res://Prefabs/BottomSpike.tscn" id="8_2jv42"]
+[ext_resource type="Script" path="res://Scripts/Health.gd" id="11_8v4kk"]
+[ext_resource type="Script" path="res://Scripts/MonsterDamage.gd" id="11_myp8c"]
+[ext_resource type="Script" path="res://Scripts/GameOver.gd" id="12_3auhq"]
+[ext_resource type="Texture2D" uid="uid://bvx5jxq56jve3" path="res://Assets/big3_100x100px.png" id="12_r058v"]
+[ext_resource type="AudioStream" uid="uid://dkhp7c0mhnxju" path="res://Assets/SFX/22_Slash_04.wav" id="12_xourw"]
+[ext_resource type="Script" path="res://Scripts/MonsterIcon.gd" id="13_77xdm"]
+[ext_resource type="Script" path="res://Scripts/ScreenManager.gd" id="15_7gko6"]
+[ext_resource type="Script" path="res://Scripts/Clip.gd" id="16_cmyuy"]
+[ext_resource type="Texture2D" uid="uid://cinp0wruuokno" path="res://Assets/pinball-texture.png" id="17_rnubc"]
+[ext_resource type="Script" path="res://Scripts/WackyLabel.gd" id="21_a0q58"]
+[ext_resource type="PackedScene" uid="uid://de3d6fjpjnx3n" path="res://Prefabs/UI/StylizedButton.tscn" id="23_f6d1g"]
+[ext_resource type="Script" path="res://Scripts/Perks.gd" id="28_vaxd0"]
+[ext_resource type="Script" path="res://Scripts/WackyButton.gd" id="28_ykfo3"]
+[ext_resource type="Script" path="res://Scripts/Transition.gd" id="29_ukgkn"]
+[ext_resource type="Script" path="res://Scripts/Goal.gd" id="31_xycge"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7ugwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7to1b"]
+size = Vector2(359, 28)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mxaq"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eohlp"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qm4t6"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3phox"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2xfs"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0oas"]
+atlas = ExtResource("12_r058v")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek6al"]
+atlas = ExtResource("12_r058v")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj87d"]
+atlas = ExtResource("12_r058v")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ar6t"]
+atlas = ExtResource("12_r058v")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk8mw"]
+atlas = ExtResource("12_r058v")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1jr3"]
+atlas = ExtResource("12_r058v")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg14s"]
+atlas = ExtResource("12_r058v")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsb5q"]
+atlas = ExtResource("12_r058v")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq5ch"]
+atlas = ExtResource("12_r058v")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id8lv"]
+atlas = ExtResource("12_r058v")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipeuj"]
+atlas = ExtResource("12_r058v")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_810ai"]
+atlas = ExtResource("12_r058v")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vsxl"]
+atlas = ExtResource("12_r058v")
+region = Rect2(400, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8j76"]
+atlas = ExtResource("12_r058v")
+region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw8rp"]
+atlas = ExtResource("12_r058v")
+region = Rect2(600, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb641"]
+atlas = ExtResource("12_r058v")
+region = Rect2(700, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43py2"]
+atlas = ExtResource("12_r058v")
+region = Rect2(0, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3e8h"]
+atlas = ExtResource("12_r058v")
+region = Rect2(100, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tufjg"]
+atlas = ExtResource("12_r058v")
+region = Rect2(200, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xub4u"]
+atlas = ExtResource("12_r058v")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re2ju"]
+atlas = ExtResource("12_r058v")
+region = Rect2(400, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krrrh"]
+atlas = ExtResource("12_r058v")
+region = Rect2(500, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3w5p"]
+atlas = ExtResource("12_r058v")
+region = Rect2(600, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcubs"]
+atlas = ExtResource("12_r058v")
+region = Rect2(700, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w13gp"]
+atlas = ExtResource("12_r058v")
+region = Rect2(0, 300, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1pex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0oas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek6al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj87d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ar6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk8mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1jr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg14s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsb5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq5ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id8lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipeuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_810ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vsxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8j76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw8rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb641")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43py2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3e8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tufjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xub4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re2ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krrrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3w5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcubs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w13gp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 120.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcxoc"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qehq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ivq8"]
+bg_color = Color(0.878431, 0.113725, 0.113725, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbif1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.733333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdoog"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3kg0"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nwbu"]
+bg_color = Color(0, 0, 0, 0.917647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv16x"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.137255, 0.137255, 0.137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.658824)
+shadow_size = 3
+shadow_offset = Vector2(2.08165e-12, 3)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbl20"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.329412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gy4ia"]
+content_margin_top = 3.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg84m"]
+bg_color = Color(0.854902, 0.854902, 0.854902, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.945098, 0.945098, 0.945098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31ghi"]
+bg_color = Color(0.415686, 0.415686, 0.415686, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xppsx"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bb8ta"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bm1e"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnpv5"]
+content_margin_left = 6.0
+content_margin_top = 14.0
+content_margin_right = 6.0
+content_margin_bottom = 12.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq5yg"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shkjp"]
+bg_color = Color(1, 1, 1, 0.356863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4n64"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_jwqr5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o7km2"]
+resource_name = "Transition"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"onTransitionMiddle"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6b17s"]
+_data = {
+"RESET": SubResource("Animation_jwqr5"),
+"Transition": SubResource("Animation_o7km2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n6w7"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qvvc"]
+content_margin_left = 6.0
+content_margin_top = 14.0
+content_margin_right = 6.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unwtr"]
+content_margin_left = 6.0
+content_margin_top = 14.0
+content_margin_right = 6.0
+content_margin_bottom = 10.0
+bg_color = Color(0.933333, 0.933333, 0.933333, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_586x2"]
+content_margin_left = 6.0
+content_margin_top = 14.0
+content_margin_right = 6.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_24cpj")
+
+[node name="Board" type="Node2D" parent="."]
+script = ExtResource("1_vi225")
+boardColor = Color(0, 0, 0, 1)
+
+[node name="Pegs" type="Node" parent="Board"]
+
+[node name="PegGroup" type="Node2D" parent="Board/Pegs"]
+position = Vector2(17, 15)
+script = ExtResource("2_6v113")
+pegRows = 6
+pegCols = 10
+pegSpacing = 32
+
+[node name="Peg-266617454" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-176, -96)
+
+[node name="Peg-4171333570" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-144, -96)
+
+[node name="Peg-2146576058" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-112, -96)
+
+[node name="Peg-4204644950" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-80, -96)
+
+[node name="Peg-3491018750" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-48, -96)
+
+[node name="Peg-3330080848" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-16, -96)
+
+[node name="Peg-1191299464" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(16, -96)
+
+[node name="Peg-2927467662" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(48, -96)
+
+[node name="Peg-2268474206" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(80, -96)
+
+[node name="Peg-2227505576" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(112, -96)
+
+[node name="Peg-1385200518" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-160, -64)
+
+[node name="Peg-4244551722" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-128, -64)
+
+[node name="Peg-646864916" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-96, -64)
+
+[node name="Peg-1780437600" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-64, -64)
+
+[node name="Peg-1870919989" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-32, -64)
+
+[node name="Peg-653160497" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(0, -64)
+
+[node name="Peg-3115711775" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(32, -64)
+
+[node name="Peg-1961662584" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(64, -64)
+
+[node name="Peg-2513896472" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(96, -64)
+
+[node name="Peg-3343935924" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(128, -64)
+
+[node name="Peg-2841309235" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-176, -32)
+
+[node name="Peg-2925972273" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-144, -32)
+
+[node name="Peg-4013349451" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-112, -32)
+
+[node name="Peg-3079443273" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-80, -32)
+
+[node name="Peg-1030747893" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-48, -32)
+
+[node name="Peg-4133377064" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-16, -32)
+
+[node name="Peg-3314902360" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(16, -32)
+
+[node name="Peg-1683148997" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(48, -32)
+
+[node name="Peg-1020467883" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(80, -32)
+
+[node name="Peg-461360931" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(112, -32)
+
+[node name="Peg-3425554744" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-160, 0)
+
+[node name="Peg-3842983655" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-128, 0)
+
+[node name="Peg-1962679287" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-96, 0)
+
+[node name="Peg-2022885419" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-64, 0)
+
+[node name="Peg-3169164754" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-32, 0)
+
+[node name="Peg-1492365344" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+
+[node name="Peg-3627990870" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(32, 0)
+
+[node name="Peg-1325158066" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(64, 0)
+
+[node name="Peg-2433510153" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(96, 0)
+
+[node name="Peg-3880339712" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(128, 0)
+
+[node name="Peg-698225292" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-144, 32)
+
+[node name="Peg-573712119" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-112, 32)
+
+[node name="Peg-284892189" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-80, 32)
+
+[node name="Peg-2341643182" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-48, 32)
+
+[node name="Peg-3904625881" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-16, 32)
+
+[node name="Peg-2158269083" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(16, 32)
+
+[node name="Peg-3921668724" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(48, 32)
+
+[node name="Peg-735101953" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(80, 32)
+
+[node name="Peg-2571086516" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(112, 32)
+
+[node name="Peg-1944070718" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(144, 32)
+
+[node name="Peg-4215686851" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-160, 64)
+
+[node name="Peg-3663805940" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-128, 64)
+
+[node name="Peg-3133638580" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-96, 64)
+
+[node name="Peg-1367750734" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-64, 64)
+
+[node name="Peg-1192425481" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(-32, 64)
+
+[node name="Peg-132819369" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(0, 64)
+
+[node name="Peg-1707178183" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(32, 64)
+
+[node name="Peg-1767311742" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(64, 64)
+
+[node name="Peg-3766666809" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(96, 64)
+
+[node name="Peg-3682285957" parent="Board/Pegs/PegGroup" instance=ExtResource("2_30q40")]
+position = Vector2(128, 64)
+
+[node name="WallLeft" type="StaticBody2D" parent="Board" groups=["Wall"]]
+position = Vector2(-182, 0)
+rotation = 1.5708
+
+[node name="Collider" type="CollisionShape2D" parent="Board/WallLeft"]
+shape = SubResource("WorldBoundaryShape2D_7ugwv")
+
+[node name="WallRight" type="StaticBody2D" parent="Board" groups=["Wall"]]
+position = Vector2(182, 3)
+rotation = -1.5708
+
+[node name="Collider" type="CollisionShape2D" parent="Board/WallRight"]
+shape = SubResource("WorldBoundaryShape2D_7ugwv")
+
+[node name="Spawn" type="Area2D" parent="Board" node_paths=PackedStringArray("ballClip")]
+position = Vector2(0, -264)
+script = ExtResource("2_wqoju")
+ballClip = NodePath("../../UI/Margin/Frames/Clip")
+
+[node name="Collider" type="CollisionShape2D" parent="Board/Spawn"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_7to1b")
+
+[node name="Movement" type="Sprite2D" parent="Board/Spawn"]
+visible = false
+modulate = Color(1, 1, 1, 0.121569)
+texture_filter = 1
+position = Vector2(2.08165e-12, 10)
+texture = ExtResource("6_hf3qp")
+
+[node name="Despawn" type="Area2D" parent="Board"]
+position = Vector2(-104, 404)
+script = ExtResource("3_uh8ht")
+
+[node name="Collider" type="CollisionShape2D" parent="Board/Despawn"]
+position = Vector2(104, 0)
+shape = SubResource("RectangleShape2D_7to1b")
+debug_color = Color(0.980392, 0.145098, 0, 0.419608)
+
+[node name="BottomSpike" parent="Board" instance=ExtResource("8_2jv42")]
+position = Vector2(0, 354)
+
+[node name="BottomSpike3" parent="Board" instance=ExtResource("8_2jv42")]
+position = Vector2(180, 354)
+
+[node name="BottomSpike2" parent="Board" instance=ExtResource("8_2jv42")]
+position = Vector2(-180, 354)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("15_7gko6")
+
+[node name="Margin" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frames" type="HBoxContainer" parent="UI/Margin"]
+visible = false
+layout_mode = 2
+
+[node name="BoardFrame" type="Panel" parent="UI/Margin/Frames"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6mxaq")
+
+[node name="SideFrame" type="Panel" parent="UI/Margin/Frames"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_eohlp")
+
+[node name="Margin" type="MarginContainer" parent="UI/Margin/Frames/SideFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 2
+
+[node name="List" type="VBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin"]
+layout_mode = 2
+
+[node name="Content" type="Panel" parent="UI/Margin/Frames/SideFrame/Margin/List"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qm4t6")
+
+[node name="List" type="VBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Monster" type="MarginContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+
+[node name="Content" type="Panel" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3phox")
+
+[node name="Margin" type="MarginContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="List" type="VBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "Monster Name"
+uppercase = true
+
+[node name="Description" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List"]
+custom_minimum_size = Vector2(2.08165e-12, 24)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fwsug")
+theme_override_font_sizes/font_size = 5
+text = "Description for current monster"
+autowrap_mode = 2
+uppercase = true
+
+[node name="Panel" type="Panel" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2xfs")
+
+[node name="Margin" type="MarginContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="List" type="VBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin"]
+layout_mode = 2
+
+[node name="MonsterDamage" type="Node" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin/List"]
+script = ExtResource("11_myp8c")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin/List/MonsterDamage"]
+visible = false
+texture_filter = 1
+position = Vector2(531, 110)
+sprite_frames = SubResource("SpriteFrames_o1pex")
+frame = 5
+frame_progress = 0.744521
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin/List/MonsterDamage"]
+stream = ExtResource("12_xourw")
+
+[node name="Icon" type="Sprite2D" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin/List"]
+visible = false
+position = Vector2(87, 39)
+scale = Vector2(3, 3)
+script = ExtResource("13_77xdm")
+
+[node name="Health" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin/List"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_fwsug")
+theme_override_font_sizes/font_size = 5
+text = "50/100"
+horizontal_alignment = 1
+
+[node name="Player" type="MarginContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+
+[node name="Panel" type="Panel" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Player"]
+custom_minimum_size = Vector2(2.08165e-12, 24)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xcxoc")
+
+[node name="Health" type="ProgressBar" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Player/Panel"]
+texture_filter = 1
+custom_minimum_size = Vector2(2.08165e-12, 24)
+layout_mode = 2
+offset_right = 196.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_2qehq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ivq8")
+value = 50.0
+show_percentage = false
+script = ExtResource("11_8v4kk")
+
+[node name="Label" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Player/Panel/Health"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fwsug")
+theme_override_font_sizes/font_size = 5
+text = "50 / 100"
+vertical_alignment = 1
+
+[node name="Stats" type="MarginContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Content" type="Panel" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3phox")
+
+[node name="Margin" type="MarginContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="Items" type="VBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin"]
+layout_mode = 2
+
+[node name="Turn" type="HBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Turn"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "Turn"
+
+[node name="Value" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Turn"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "1"
+
+[node name="Damage" type="HBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "Damage"
+
+[node name="Value" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Damage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "0"
+
+[node name="Multiplier" type="HBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Multiplier"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.596078, 0.2, 1, 1)
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "Multiplier"
+
+[node name="Value" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Multiplier"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.596078, 0.2, 1, 1)
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "1"
+
+[node name="Margin" type="MarginContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Divider" type="Panel" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Margin"]
+custom_minimum_size = Vector2(2.08165e-12, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nbif1")
+
+[node name="Total" type="HBoxContainer" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Total"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "Total"
+
+[node name="Value" type="Label" parent="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Stats/Content/Margin/Items/Total"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "0"
+
+[node name="Clip" type="Panel" parent="UI/Margin/Frames"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fdoog")
+script = ExtResource("16_cmyuy")
+
+[node name="Margin" type="MarginContainer" parent="UI/Margin/Frames/Clip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Vert" type="VBoxContainer" parent="UI/Margin/Frames/Clip/Margin"]
+layout_mode = 2
+
+[node name="0" type="Panel" parent="UI/Margin/Frames/Clip/Margin/Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3kg0")
+
+[node name="Sprite" type="TextureRect" parent="UI/Margin/Frames/Clip/Margin/Vert/0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rnubc")
+stretch_mode = 2
+
+[node name="1" type="Panel" parent="UI/Margin/Frames/Clip/Margin/Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3kg0")
+
+[node name="Sprite" type="TextureRect" parent="UI/Margin/Frames/Clip/Margin/Vert/1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rnubc")
+stretch_mode = 2
+
+[node name="2" type="Panel" parent="UI/Margin/Frames/Clip/Margin/Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3kg0")
+
+[node name="Sprite" type="TextureRect" parent="UI/Margin/Frames/Clip/Margin/Vert/2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rnubc")
+stretch_mode = 2
+
+[node name="3" type="Panel" parent="UI/Margin/Frames/Clip/Margin/Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3kg0")
+
+[node name="Sprite" type="TextureRect" parent="UI/Margin/Frames/Clip/Margin/Vert/3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rnubc")
+stretch_mode = 2
+
+[node name="4" type="Panel" parent="UI/Margin/Frames/Clip/Margin/Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3kg0")
+
+[node name="Sprite" type="TextureRect" parent="UI/Margin/Frames/Clip/Margin/Vert/4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rnubc")
+stretch_mode = 2
+
+[node name="5" type="Panel" parent="UI/Margin/Frames/Clip/Margin/Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3kg0")
+
+[node name="Sprite" type="TextureRect" parent="UI/Margin/Frames/Clip/Margin/Vert/5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rnubc")
+stretch_mode = 2
+
+[node name="6" type="Panel" parent="UI/Margin/Frames/Clip/Margin/Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3kg0")
+
+[node name="Sprite" type="TextureRect" parent="UI/Margin/Frames/Clip/Margin/Vert/6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_rnubc")
+stretch_mode = 2
+
+[node name="GameOver" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nwbu")
+script = ExtResource("12_3auhq")
+
+[node name="Window" type="Panel" parent="UI/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -66.0
+offset_right = 121.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yv16x")
+
+[node name="Vertical" type="VBoxContainer" parent="UI/GameOver/Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Panel" parent="UI/GameOver/Window/Vertical"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hbl20")
+
+[node name="Label" type="Label" parent="UI/GameOver/Window/Vertical/Title"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -7.0
+offset_right = 121.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gy4ia")
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="UI/GameOver/Window/Vertical"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+
+[node name="Items" type="VBoxContainer" parent="UI/GameOver/Window/Vertical/Margin"]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="UI/GameOver/Window/Vertical/Margin/Items"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Retry" parent="UI/GameOver/Window/Vertical/Margin/Items/Buttons" instance=ExtResource("23_f6d1g")]
+layout_mode = 2
+buttonLabel = "Retry"
+
+[node name="Menu" parent="UI/GameOver/Window/Vertical/Margin/Items/Buttons" instance=ExtResource("23_f6d1g")]
+layout_mode = 2
+buttonLabel = "Menu"
+
+[node name="Upgrade" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nwbu")
+
+[node name="Window" type="Panel" parent="UI/Upgrade"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -66.0
+offset_right = 121.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kg84m")
+
+[node name="Margin" type="MarginContainer" parent="UI/Upgrade/Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Items" type="VBoxContainer" parent="UI/Upgrade/Window/Margin"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/Upgrade/Window/Margin/Items"]
+custom_minimum_size = Vector2(2.08165e-12, 36)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_31ghi")
+
+[node name="Label" type="Label" parent="UI/Upgrade/Window/Margin/Items/Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "UPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Panel" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_right = 1.0
+offset_bottom = 73.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xppsx")
+
+[node name="VBox" type="VBoxContainer" parent="UI/Score"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 11.5
+offset_right = 80.0
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TotalScore" type="Label" parent="UI/Score/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "0000000000"
+horizontal_alignment = 1
+
+[node name="Hor" type="HBoxContainer" parent="UI/Score/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Multiply" type="Label" parent="UI/Score/VBox/Hor"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.615686, 0, 0.839216, 1)
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "000"
+script = ExtResource("21_a0q58")
+
+[node name="X" type="Label" parent="UI/Score/VBox/Hor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "X"
+
+[node name="Points" type="Label" parent="UI/Score/VBox/Hor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "000"
+script = ExtResource("21_a0q58")
+
+[node name="Needed" type="Label" parent="UI/Score/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "Goal: 00000"
+horizontal_alignment = 1
+
+[node name="Shop" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bb8ta")
+
+[node name="Perks" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bb8ta")
+script = ExtResource("28_vaxd0")
+
+[node name="Vert" type="VBoxContainer" parent="UI/Perks"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -50.0
+offset_right = -16.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/Perks/Vert"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8bm1e")
+text = "Select Perk"
+horizontal_alignment = 1
+
+[node name="Bounce" type="Button" parent="UI/Perks/Vert"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r13tp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_xnpv5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mq5yg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_shkjp")
+text = "+ Bounce"
+script = ExtResource("28_ykfo3")
+
+[node name="Transition" type="Panel" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w4n64")
+script = ExtResource("29_ukgkn")
+
+[node name="Anim" type="AnimationPlayer" parent="UI/Transition"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_6b17s")
+}
+
+[node name="Goal" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3n6w7")
+script = ExtResource("31_xycge")
+
+[node name="Vert" type="VBoxContainer" parent="UI/Goal"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -93.0
+offset_right = -16.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Round" type="Label" parent="UI/Goal/Vert"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "Round 1"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Container" parent="UI/Goal/Vert"]
+custom_minimum_size = Vector2(2.08165e-12, 20)
+layout_mode = 2
+
+[node name="Score" type="Label" parent="UI/Goal/Vert"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="Required" type="Label" parent="UI/Goal/Vert"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+theme_override_font_sizes/font_size = 32
+text = "00000000"
+horizontal_alignment = 1
+
+[node name="ToWin" type="Label" parent="UI/Goal/Vert"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_r13tp")
+text = "TO WIN"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Container" parent="UI/Goal/Vert"]
+custom_minimum_size = Vector2(2.08165e-12, 20)
+layout_mode = 2
+
+[node name="Begin" type="Button" parent="UI/Goal/Vert"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r13tp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_6qvvc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_unwtr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_586x2")
+text = "BEGIN"
+script = ExtResource("28_ykfo3")
+
+[node name="GameCamera" type="Camera2D" parent="."]
+script = ExtResource("5_yq2km")
+
+[connection signal="body_entered" from="Board/Despawn" to="Board/Despawn" method="OnDespawnEntered"]
+[connection signal="animation_finished" from="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin/List/MonsterDamage/Sprite" to="UI/Margin/Frames/SideFrame/Margin/List/Content/List/Monster/Content/Margin/List/Panel/Margin/List/MonsterDamage" method="onDamageComplete"]
+[connection signal="mouse_entered" from="UI/Perks/Vert/Bounce" to="UI/Perks/Vert/Bounce" method="OnHover"]
+[connection signal="mouse_entered" from="UI/Goal/Vert/Begin" to="UI/Goal/Vert/Begin" method="OnHover"]
+[connection signal="pressed" from="UI/Goal/Vert/Begin" to="UI/Goal" method="onBeginPressed"]

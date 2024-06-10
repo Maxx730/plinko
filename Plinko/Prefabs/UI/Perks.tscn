@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dldavfwjvbpc2"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/Perks.gd" id="1_snhty"]
+[ext_resource type="PackedScene" uid="uid://dp60iyvuqk0dv" path="res://Prefabs/UI/Perk.tscn" id="2_oivbp"]
+[ext_resource type="Resource" uid="uid://dt6hcjvibx0ys" path="res://Resources/PerkResource.tres" id="3_861gm"]
+
+[node name="Perks" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_snhty")
+
+[node name="Vert" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.5
+offset_top = -342.0
+offset_right = 120.5
+offset_bottom = 342.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="1" parent="Vert" instance=ExtResource("2_oivbp")]
+layout_mode = 2
+size_flags_vertical = 3
+perkResource = ExtResource("3_861gm")
+
+[node name="2" parent="Vert" instance=ExtResource("2_oivbp")]
+layout_mode = 2
+size_flags_vertical = 3
+perkResource = ExtResource("3_861gm")
+
+[node name="3" parent="Vert" instance=ExtResource("2_oivbp")]
+layout_mode = 2
+size_flags_vertical = 3
+perkResource = ExtResource("3_861gm")

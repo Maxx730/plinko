@@ -1,0 +1,374 @@
+[gd_scene load_steps=36 format=3 uid="uid://cdqgva8tpxiki"]
+
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_0yrae"]
+[ext_resource type="Script" path="res://Scripts/GameCamera.gd" id="1_12f4f"]
+[ext_resource type="Script" path="res://Scripts/Board.gd" id="1_aqggj"]
+[ext_resource type="Script" path="res://Scripts/ScreenManager.gd" id="1_x0qqf"]
+[ext_resource type="PackedScene" uid="uid://f4ax1gcifxwq" path="res://Prefabs/Screen.tscn" id="2_u0g6w"]
+[ext_resource type="PackedScene" uid="uid://dldavfwjvbpc2" path="res://Prefabs/UI/Perks.tscn" id="3_5opyl"]
+[ext_resource type="Script" path="res://Scripts/PegGroup.gd" id="3_27wqm"]
+[ext_resource type="Script" path="res://Scripts/Spawn.gd" id="3_mb2uo"]
+[ext_resource type="PackedScene" uid="uid://bmutl5u1w6fat" path="res://Prefabs/UI/Begin.tscn" id="4_2pe0g"]
+[ext_resource type="Script" path="res://Scripts/Despawn.gd" id="5_2db1p"]
+[ext_resource type="PackedScene" uid="uid://ba2dph007ahep" path="res://Prefabs/UI/Shop.tscn" id="5_dhmc2"]
+[ext_resource type="Texture2D" uid="uid://lj5a14kq1uvv" path="res://Assets/top-deco.png" id="6_mb216"]
+[ext_resource type="PackedScene" uid="uid://bbe5sam6evhr8" path="res://Prefabs/BottomSpike.tscn" id="7_glmjt"]
+[ext_resource type="Texture2D" uid="uid://b2tcb5efcojxy" path="res://Assets/wall-deco.png" id="7_kxy81"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="8_ixi32"]
+[ext_resource type="Texture2D" uid="uid://cft5b1espd12t" path="res://Assets/peg-multiply-damage-texture.png" id="9_y7wd7"]
+[ext_resource type="Script" path="res://Scripts/Clip.gd" id="10_klge1"]
+[ext_resource type="Texture2D" uid="uid://dywn6hpvsrkl6" path="res://Assets/bottom-deco.png" id="10_o3t0r"]
+[ext_resource type="Texture2D" uid="uid://c0c4cqhbxk70o" path="res://Assets/bottom-background.png" id="10_tkmjq"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="11_n6xyj"]
+[ext_resource type="Script" path="res://Scripts/Aim.gd" id="13_p4cuj"]
+[ext_resource type="Shader" path="res://Assets/DiamondShader.gdshader" id="14_spwp2"]
+[ext_resource type="Script" path="res://Scripts/Transition.gd" id="15_bao6d"]
+[ext_resource type="Script" path="res://Scripts/Preview.gd" id="15_koh7x"]
+[ext_resource type="PackedScene" uid="uid://c6863c6nikbtj" path="res://Prefabs/UI/Score.tscn" id="16_6pjnp"]
+[ext_resource type="Script" path="res://Scripts/WackyLabel.gd" id="17_ktaaq"]
+[ext_resource type="PackedScene" uid="uid://b4q8r1q0t10x4" path="res://Prefabs/UI/Main.tscn" id="22_kj5gl"]
+[ext_resource type="PackedScene" uid="uid://qdgu3jcftgf8" path="res://Prefabs/UI/Loading.tscn" id="23_735uk"]
+[ext_resource type="Texture2D" uid="uid://0ol25hix142k" path="res://Assets/scoreboard-background.png" id="29_63stu"]
+[ext_resource type="Texture2D" uid="uid://40c56qfkqise" path="res://Assets/ball-default.png" id="31_g1ul1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01t85"]
+size = Vector2(359, 22)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w7afr"]
+normal = Vector2(-4.37114e-08, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6a0c"]
+shader = ExtResource("14_spwp2")
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr530"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35k2k"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_0yrae")
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("1_12f4f")
+shakeAmount = 6.0
+
+[node name="Board" type="Node2D" parent="."]
+script = ExtResource("1_aqggj")
+
+[node name="Pegs" type="Node" parent="Board"]
+
+[node name="PegGroup" type="Node2D" parent="Board/Pegs"]
+position = Vector2(24, 0)
+script = ExtResource("3_27wqm")
+pegRows = 6
+pegCols = 8
+pegSpacing = 28
+
+[node name="Colliders" type="Node" parent="Board"]
+
+[node name="Backtop" type="Sprite2D" parent="Board/Colliders"]
+position = Vector2(0, -333)
+texture = ExtResource("6_mb216")
+
+[node name="Bottom" type="Sprite2D" parent="Board/Colliders"]
+position = Vector2(0, 339)
+texture = ExtResource("10_o3t0r")
+
+[node name="Walls" type="Sprite2D" parent="Board/Colliders"]
+position = Vector2(0, 17)
+texture = ExtResource("7_kxy81")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 360, 600)
+
+[node name="Spawn" type="Area2D" parent="Board/Colliders" node_paths=PackedStringArray("ballClip")]
+position = Vector2(0, -245)
+script = ExtResource("3_mb2uo")
+ballClip = NodePath("../../../UI/HUD/Top/Margin/List/Clip")
+
+[node name="Collider" type="CollisionShape2D" parent="Board/Colliders/Spawn"]
+shape = SubResource("RectangleShape2D_01t85")
+debug_color = Color(0.376471, 1, 0, 0.419608)
+
+[node name="Aim" type="Node2D" parent="Board/Colliders/Spawn"]
+script = ExtResource("13_p4cuj")
+
+[node name="X" type="Sprite2D" parent="Board/Colliders/Spawn/Aim"]
+modulate = Color(1, 0, 0, 1)
+z_index = 2
+texture = ExtResource("9_y7wd7")
+
+[node name="Check" type="RayCast2D" parent="Board/Colliders/Spawn/Aim"]
+
+[node name="Trace" type="Line2D" parent="Board/Colliders/Spawn/Aim"]
+width = 2.0
+
+[node name="Despawn" type="Area2D" parent="Board/Colliders"]
+position = Vector2(0, 367)
+script = ExtResource("5_2db1p")
+
+[node name="Collider" type="CollisionShape2D" parent="Board/Colliders/Despawn"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_01t85")
+debug_color = Color(0.980392, 0.145098, 0, 0.419608)
+
+[node name="Frame" type="StaticBody2D" parent="Board/Colliders" groups=["Wall"]]
+
+[node name="Right" type="CollisionShape2D" parent="Board/Colliders/Frame"]
+position = Vector2(161, 1)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_w7afr")
+
+[node name="Left" type="CollisionShape2D" parent="Board/Colliders/Frame"]
+position = Vector2(-160, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_w7afr")
+
+[node name="RightBack" type="Sprite2D" parent="Board/Colliders"]
+visible = false
+position = Vector2(92, 352)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_tkmjq")
+
+[node name="LeftBack" type="Sprite2D" parent="Board/Colliders"]
+visible = false
+position = Vector2(-86, 352)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_tkmjq")
+flip_h = true
+
+[node name="BottomSpike" parent="Board/Colliders" instance=ExtResource("7_glmjt")]
+position = Vector2(0, 354)
+
+[node name="BottomSpike3" parent="Board/Colliders" instance=ExtResource("7_glmjt")]
+position = Vector2(139, 354)
+
+[node name="BottomSpike2" parent="Board/Colliders" instance=ExtResource("7_glmjt")]
+position = Vector2(-139, 354)
+
+[node name="Effects" type="Node" parent="Board"]
+
+[node name="Shade" type="CanvasModulate" parent="Board/Effects"]
+visible = false
+color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[node name="Preview" type="Line2D" parent="Board/Effects"]
+width = 3.0
+default_color = Color(1, 1, 1, 0)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("15_koh7x")
+
+[node name="Check" type="RayCast2D" parent="Board/Effects/Preview"]
+
+[node name="Props" type="Node" parent="Board"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Screens" type="Node" parent="UI"]
+script = ExtResource("1_x0qqf")
+
+[node name="Loading" parent="UI/Screens" instance=ExtResource("2_u0g6w")]
+visible = false
+screenTitle = "Loading"
+screenContents = ExtResource("23_735uk")
+
+[node name="Perks" parent="UI/Screens" instance=ExtResource("2_u0g6w")]
+visible = false
+screenTitle = "Perks"
+screenContents = ExtResource("3_5opyl")
+
+[node name="Shop" parent="UI/Screens" instance=ExtResource("2_u0g6w")]
+visible = false
+screenTitle = "Shop"
+screenContents = ExtResource("5_dhmc2")
+
+[node name="Score" parent="UI/Screens" instance=ExtResource("2_u0g6w")]
+visible = false
+screenTitle = "Score"
+screenContents = ExtResource("16_6pjnp")
+
+[node name="Begin" parent="UI/Screens" instance=ExtResource("2_u0g6w")]
+visible = false
+screenTitle = "Begin"
+screenContents = ExtResource("4_2pe0g")
+
+[node name="Main" parent="UI/Screens" instance=ExtResource("2_u0g6w")]
+visible = false
+screenTitle = "Main"
+screenContents = ExtResource("22_kj5gl")
+
+[node name="Transitions" type="Node" parent="UI"]
+
+[node name="Diamond" type="Panel" parent="UI/Transitions"]
+visible = false
+material = SubResource("ShaderMaterial_c6a0c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_tr530")
+script = ExtResource("15_bao6d")
+
+[node name="HUD" type="Node" parent="UI"]
+script = ExtResource("8_ixi32")
+
+[node name="Top" type="Panel" parent="UI/HUD"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_35k2k")
+
+[node name="Margin" type="MarginContainer" parent="UI/HUD/Top"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 24
+
+[node name="List" type="VBoxContainer" parent="UI/HUD/Top/Margin"]
+layout_mode = 2
+
+[node name="Scores" type="VBoxContainer" parent="UI/HUD/Top/Margin/List"]
+layout_mode = 2
+
+[node name="Target" type="HBoxContainer" parent="UI/HUD/Top/Margin/List/Scores"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/Top/Margin/List/Scores/Target"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HUD/Top/Margin/List/Scores/Target"]
+layout_mode = 2
+text = "000"
+
+[node name="TotalScore" type="Label" parent="UI/HUD/Top/Margin/List/Scores"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("11_n6xyj")
+theme_override_font_sizes/font_size = 16
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 2
+script = ExtResource("17_ktaaq")
+
+[node name="1" type="Container" parent="UI/HUD/Top/Margin/List"]
+custom_minimum_size = Vector2(2.08165e-12, 24)
+layout_mode = 2
+
+[node name="Frame" type="TextureRect" parent="UI/HUD/Top/Margin/List"]
+layout_mode = 2
+texture = ExtResource("29_63stu")
+stretch_mode = 3
+
+[node name="Calculate" type="HBoxContainer" parent="UI/HUD/Top/Margin/List/Frame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -6.0
+offset_right = 15.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Mult" type="Label" parent="UI/HUD/Top/Margin/List/Frame/Calculate"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.584314, 0, 1, 1)
+theme_override_fonts/font = ExtResource("11_n6xyj")
+text = "1"
+horizontal_alignment = 1
+script = ExtResource("17_ktaaq")
+
+[node name="X" type="Label" parent="UI/HUD/Top/Margin/List/Frame/Calculate"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_n6xyj")
+text = "X"
+horizontal_alignment = 1
+
+[node name="Points" type="Label" parent="UI/HUD/Top/Margin/List/Frame/Calculate"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_n6xyj")
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("17_ktaaq")
+
+[node name="2" type="Container" parent="UI/HUD/Top/Margin/List"]
+custom_minimum_size = Vector2(2.08165e-12, 12)
+layout_mode = 2
+
+[node name="Clip" type="HBoxContainer" parent="UI/HUD/Top/Margin/List"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+script = ExtResource("10_klge1")
+defaultBallTexture = ExtResource("31_g1ul1")
+
+[node name="0" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[node name="1" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[node name="2" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[node name="3" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[node name="4" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[node name="5" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[node name="6" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[node name="7" type="TextureRect" parent="UI/HUD/Top/Margin/List/Clip"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("31_g1ul1")
+stretch_mode = 2
+
+[connection signal="body_entered" from="Board/Colliders/Despawn" to="Board/Colliders/Despawn" method="OnDespawnEntered"]

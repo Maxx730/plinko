@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://de3d6fjpjnx3n"]
+
+[ext_resource type="Script" path="res://Scripts/StylizedButton.gd" id="1_t7xn6"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="2_fsbrm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47kc1"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfcwy"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25098, 0.25098, 0.25098, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kl0ty"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25098, 0.25098, 0.25098, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lvme"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.137255, 0.137255, 0.137255, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amauf"]
+
+[node name="StylizedButton" type="Panel"]
+custom_minimum_size = Vector2(2.08165e-12, 36)
+theme_override_styles/panel = SubResource("StyleBoxFlat_47kc1")
+script = ExtResource("1_t7xn6")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Button" type="Button" parent="Margin"]
+texture_filter = 1
+custom_minimum_size = Vector2(2.08165e-12, 24)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qfcwy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kl0ty")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8lvme")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_amauf")
+
+[node name="Label" type="Label" parent="Margin/Button"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_fsbrm")
+text = "TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

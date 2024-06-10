@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://chmsj0wvfg0vy"]
+
+[ext_resource type="Script" path="res://Scripts/Monster.gd" id="1_fwbvv"]
+[ext_resource type="Texture2D" uid="uid://16g4w7uh47xp" path="res://Assets/monochrome_32x32.png" id="2_tfh8h"]
+
+[node name="Spider" type="Node"]
+script = ExtResource("1_fwbvv")
+spriteTexture = ExtResource("2_tfh8h")
+monsterName = "Spider"
+monsterDescription = "Eight legs, spins hot white webs of friendship."
+maxHitpoints = 120

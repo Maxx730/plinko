@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cru3tcpgf27qx"]
+
+[ext_resource type="Script" path="res://Scripts/Alert.gd" id="1_s7708"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="2_gual2"]
+
+[node name="Alert" type="Node2D"]
+position = Vector2(0, -170)
+script = ExtResource("1_s7708")
+
+[node name="Alert" type="Label" parent="."]
+offset_left = -108.0
+offset_top = -25.0
+offset_right = 96.0
+offset_bottom = 31.0
+pivot_offset = Vector2(108, 25)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_gual2")
+theme_override_font_sizes/font_size = 64
+text = "MESSAGE"
+horizontal_alignment = 1
+vertical_alignment = 1

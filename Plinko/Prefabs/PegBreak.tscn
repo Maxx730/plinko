@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://pm6ecofi3866"]
+
+[ext_resource type="Texture2D" uid="uid://c0ulc7xlh2j4v" path="res://Assets/blood-particle-texture.png" id="1_2xkfc"]
+
+[sub_resource type="Curve" id="Curve_dpq1p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.931925, 0.503382), -1.40583, -1.40583, 0, 0, Vector2(1, 0.00676489), -9.09044, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iucok"]
+curve = SubResource("Curve_dpq1p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_layio"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+gravity = Vector3(2.08165e-12, 300, 2.08165e-12)
+damping_min = 75.0
+damping_max = 105.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_iucok")
+color = Color(0.772549, 0.772549, 0.772549, 1)
+
+[node name="PegBreak" type="GPUParticles2D"]
+position = Vector2(0, -185)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_layio")
+texture = ExtResource("1_2xkfc")
+one_shot = true
+explosiveness = 1.0

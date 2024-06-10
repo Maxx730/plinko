@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://deb4jbnt2bnwq"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_4h6wc"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="2_fk0fv"]
+[ext_resource type="Texture2D" uid="uid://cim5ktjgmbjxm" path="res://Assets/button-normal.png" id="3_i507e"]
+[ext_resource type="Texture2D" uid="uid://3w7wuibitdnk" path="res://Assets/button-pressedl.png" id="4_vdkb3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5ilk"]
+bg_color = Color(0, 0, 0, 0.243137)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_4h6wc")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Screen" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="Panel" parent="UI/Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q5ilk")
+
+[node name="Options" type="VBoxContainer" parent="UI/Screen/Shade"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -56.0
+offset_right = 155.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/Screen/Shade/Options"]
+z_index = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fk0fv")
+theme_override_font_sizes/font_size = 32
+text = "Pachinko Pursuit"
+horizontal_alignment = 1
+
+[node name="Container" type="Container" parent="UI/Screen/Shade/Options"]
+custom_minimum_size = Vector2(2.08165e-12, 20)
+layout_mode = 2
+
+[node name="Start" type="TextureButton" parent="UI/Screen/Shade/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_i507e")
+texture_pressed = ExtResource("4_vdkb3")
+
+[node name="Label" type="Label" parent="UI/Screen/Shade/Options/Start"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -5.0
+offset_right = 17.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fk0fv")
+text = "START"
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="UI/Screen/Shade/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_i507e")
+texture_pressed = ExtResource("4_vdkb3")
+
+[node name="Label" type="Label" parent="UI/Screen/Shade/Options/Quit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -5.0
+offset_right = 17.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fk0fv")
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UI/Screen/Shade/Options/Start" to="." method="startRun"]
