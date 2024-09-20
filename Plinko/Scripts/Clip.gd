@@ -5,18 +5,11 @@ var currentClip: Array
 
 @export var defaultBallTexture: Texture
 
-
+signal OnBallsReloaded()
 
 func _ready() -> void:
 	clear_balls()
-	Events.OnGameStateChanged.connect(on_state_changed)
 
-
-
-func on_state_changed(state: Game.GAME_STATE) -> void:
-	match state:
-		Game.GAME_STATE.SPAWN:
-			pass
 
 func add_ball(ballResource: Resource) -> void:
 	currentClip.append(ballResource)
@@ -56,5 +49,9 @@ func get_next_ball() -> Resource:
 	return ballResource
 
 func reload_balls() -> void:
+	clear_balls()
+	await get_tree().create_timer(0.025).timeout
 	for i in range(Global.ballAmount):
 		add_ball(ballResource)
+
+	OnBallsReloaded.emit()

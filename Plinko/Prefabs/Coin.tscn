@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkcf4xs1jyo1m"]
+
+[ext_resource type="Script" path="res://Scripts/Pegs/Coin.gd" id="1_mloun"]
+[ext_resource type="Texture2D" uid="uid://ckc2f700gdles" path="res://Assets/Pegs/peg-coin.png" id="2_ujebt"]
+[ext_resource type="AudioStream" uid="uid://b2skj1ip6u5jo" path="res://Assets/SFX/Hit_3.wav" id="3_ltk5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pqav"]
+radius = 11.0
+
+[node name="Coin" type="StaticBody2D"]
+script = ExtResource("1_mloun")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+light_mask = 2
+z_index = 2
+texture_filter = 1
+texture = ExtResource("2_ujebt")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5pqav")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ltk5f")
+volume_db = -50.0

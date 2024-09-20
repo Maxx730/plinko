@@ -1,0 +1,126 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbf5u1qqewjep"]
+
+[ext_resource type="Texture2D" uid="uid://ck64s2xyc0irr" path="res://Assets/content-frame.png" id="1_n22vq"]
+[ext_resource type="Texture2D" uid="uid://dj30n4mwpja7h" path="res://Assets/card-top.png" id="2_y3ntf"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="3_a57h6"]
+[ext_resource type="Texture2D" uid="uid://brb8a5el202br" path="res://Assets/card-bottom.png" id="3_koiud"]
+[ext_resource type="Texture2D" uid="uid://cim5ktjgmbjxm" path="res://Assets/button-normal.png" id="5_ey7lj"]
+[ext_resource type="Texture2D" uid="uid://3w7wuibitdnk" path="res://Assets/button-pressedl.png" id="6_dcu71"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqeh4"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="List" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -214.5
+offset_right = 124.0
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frame" type="NinePatchRect" parent="List"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_n22vq")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Margin" type="MarginContainer" parent="List/Frame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/Frame/Margin"]
+layout_mode = 2
+
+[node name="Card" type="VBoxContainer" parent="List/Frame/Margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="List/Frame/Margin/VBoxContainer/Card"]
+layout_mode = 2
+texture = ExtResource("2_y3ntf")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="List/Frame/Margin/VBoxContainer/Card/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_a57h6")
+text = "FINAL SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Content" type="TextureRect" parent="List/Frame/Margin/VBoxContainer/Card"]
+layout_mode = 2
+texture = ExtResource("3_koiud")
+stretch_mode = 2
+
+[node name="Panel" type="Panel" parent="List/Frame/Margin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_eqeh4")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="List/Frame/Margin/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Begin" type="TextureButton" parent="List"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_ey7lj")
+texture_pressed = ExtResource("6_dcu71")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="List/Begin"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_a57h6")
+text = "MAIN MENU"

@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn5txllcp3ce8"]
+
+[ext_resource type="Script" path="res://Scripts/Board/BoardSection.gd" id="1_x7joa"]
+[ext_resource type="Texture2D" uid="uid://dthpcpv41tkaa" path="res://Assets/BoardTypes/board-type-3.png" id="4_s10bb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juk70"]
+size = Vector2(413, 48.9998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7uno"]
+size = Vector2(413, 49.9998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1weq0"]
+size = Vector2(85.0001, 15.0006)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjopq"]
+size = Vector2(75.5, 15.0006)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igft8"]
+size = Vector2(70, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfink"]
+size = Vector2(318, 648)
+
+[node name="BoardSection" type="Node2D"]
+script = ExtResource("1_x7joa")
+
+[node name="Walls" type="Sprite2D" parent="."]
+texture = ExtResource("4_s10bb")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 360, 648)
+
+[node name="Frame" type="StaticBody2D" parent="." groups=["Wall"]]
+position = Vector2(0, -17)
+
+[node name="Right" type="CollisionShape2D" parent="Frame"]
+position = Vector2(154.5, 19.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_juk70")
+
+[node name="Left" type="CollisionShape2D" parent="Frame"]
+position = Vector2(-155, 18.5)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_j7uno")
+
+[node name="Left3" type="CollisionShape2D" parent="Frame"]
+position = Vector2(-171.5, -268.5)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_1weq0")
+
+[node name="Left5" type="CollisionShape2D" parent="Frame"]
+position = Vector2(-172, 300)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_hjopq")
+
+[node name="Left6" type="CollisionShape2D" parent="Frame"]
+position = Vector2(172, 300)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_hjopq")
+
+[node name="Left4" type="CollisionShape2D" parent="Frame"]
+position = Vector2(171, -269)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_1weq0")
+
+[node name="Left2" type="CollisionShape2D" parent="Frame"]
+position = Vector2(-1.00019, 179)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_igft8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Frame"]
+position = Vector2(0, 142)
+polygon = PackedVector2Array(-55, 2, -1, -53, 52, 2)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Frame"]
+polygon = PackedVector2Array(164, -227, 162, -221, 131, -190, 130, -187, 178, -187, 178, -227)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Frame"]
+polygon = PackedVector2Array(-179, -226, -164, -226, -161, -221, -131, -191, -130, -188, -180, -188)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Frame"]
+polygon = PackedVector2Array(-180, 225, -130, 225, -130, 227, -161, 259, -162, 262, -180, 262)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Frame"]
+polygon = PackedVector2Array(130, 226, 179, 226, 179, 262, 163, 262, 161, 258, 130, 227)
+
+[node name="BottomConnect" type="Marker2D" parent="."]
+position = Vector2(-1, 318)
+
+[node name="TopConnect" type="Marker2D" parent="."]
+position = Vector2(-1, -292)
+
+[node name="Entrance" type="Area2D" parent="."]
+position = Vector2(0, -13)
+
+[node name="Collider" type="CollisionShape2D" parent="Entrance"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_hfink")
+debug_color = Color(0.709804, 0.266667, 1, 0.419608)

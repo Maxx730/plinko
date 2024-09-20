@@ -1,25 +1,67 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6863c6nikbtj"]
+[gd_scene load_steps=17 format=3 uid="uid://c6863c6nikbtj"]
 
 [ext_resource type="Script" path="res://Scripts/Screens/Score.gd" id="1_38igu"]
 [ext_resource type="Texture2D" uid="uid://dj30n4mwpja7h" path="res://Assets/card-top.png" id="1_twche"]
+[ext_resource type="Texture2D" uid="uid://cinp0wruuokno" path="res://Assets/pinball-texture.png" id="2_068lm"]
 [ext_resource type="Texture2D" uid="uid://brb8a5el202br" path="res://Assets/card-bottom.png" id="2_cn4t8"]
-[ext_resource type="Texture2D" uid="uid://cim5ktjgmbjxm" path="res://Assets/button-normal.png" id="3_eeg4f"]
-[ext_resource type="Texture2D" uid="uid://3w7wuibitdnk" path="res://Assets/button-pressedl.png" id="4_huxqs"]
+[ext_resource type="Script" path="res://Scripts/WackyTitle.gd" id="2_gpwkk"]
+[ext_resource type="Script" path="res://Scripts/Background.gd" id="2_ijqnc"]
+[ext_resource type="Script" path="res://Scripts/WackyLabel.gd" id="5_6l032"]
 [ext_resource type="Texture2D" uid="uid://bbmdyc1x12ttn" path="res://Assets/target-icon.png" id="5_rgpyj"]
 [ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="5_wdg67"]
-[ext_resource type="Script" path="res://Scripts/WackyLabel.gd" id="6_4e5eg"]
-[ext_resource type="Texture2D" uid="uid://r40floq5g72q" path="res://Assets/button-disabled.png" id="9_xhhkt"]
+[ext_resource type="PackedScene" uid="uid://baa1mdq3ygrbv" path="res://Prefabs/UI/WackyButton.tscn" id="10_h7k2y"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q3jtc"]
+load_path = "res://.godot/imported/tiled-background-texture.png-7b3a6347158a177ff1fc712955c6672c.ctex"
+
+[sub_resource type="Gradient" id="Gradient_ymwx1"]
+colors = PackedColorArray(0.834614, 0.834614, 0.834614, 1, 0.712129, 0.712129, 0.712129, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uy0pj"]
+gradient = SubResource("Gradient_ymwx1")
+
+[sub_resource type="Curve" id="Curve_txgu2"]
+_data = [Vector2(0, 0), 0.0, 1.53517, 0, 0, Vector2(1, 0.686506), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vejtp"]
+curve = SubResource("Curve_txgu2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_btvwf"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 16, 1)
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 4.0
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_vejtp")
+color_initial_ramp = SubResource("GradientTexture1D_uy0pj")
 
 [node name="Score" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_38igu")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.0941176, 0.0901961, 0.0862745, 1)
+texture_repeat = 2
+texture = SubResource("CompressedTexture2D_q3jtc")
+region_enabled = true
+region_rect = Rect2(2.02598e+06, 2.02598e+06, 1080, 780)
+script = ExtResource("2_ijqnc")
+backgroundMovementType = 1
+backgroundBaseColor = Color(0.0941176, 0.0901961, 0.0862745, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(0, -158)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_btvwf")
+texture = ExtResource("2_068lm")
 
 [node name="List" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -28,12 +70,106 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -120.0
+offset_top = -168.0
+offset_right = 121.0
+offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Title" type="HBoxContainer" parent="List"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("2_gpwkk")
+letterRockSpeed = 2.0
+letterRockAmount = 6.0
+wackyFont = ExtResource("5_wdg67")
+wackyText = "GAME OVER"
+
+[node name="0" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "G"
+
+[node name="1" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "A"
+
+[node name="2" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "M"
+
+[node name="3" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "E"
+
+[node name="4" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = " "
+
+[node name="5" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "O"
+
+[node name="6" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "V"
+
+[node name="7" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "E"
+
+[node name="8" type="Label" parent="List/Title"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 48
+text = "R"
+
+[node name="Status" type="Label" parent="List"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_wdg67")
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Container" type="Container" parent="List"]
+custom_minimum_size = Vector2(2.08165e-12, 32)
+layout_mode = 2
 
 [node name="Top" type="TextureRect" parent="List"]
 layout_mode = 2
@@ -76,8 +212,7 @@ text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-script = ExtResource("6_4e5eg")
-animationSpeed = 15.0
+script = ExtResource("5_6l032")
 
 [node name="Margin" type="MarginContainer" parent="List/Middle"]
 layout_mode = 1
@@ -110,48 +245,10 @@ horizontal_alignment = 1
 vertical_alignment = 2
 uppercase = true
 
-[node name="Continue" type="TextureButton" parent="List"]
+[node name="Continue" parent="List" instance=ExtResource("10_h7k2y")]
 layout_mode = 2
-texture_normal = ExtResource("3_eeg4f")
-texture_pressed = ExtResource("4_huxqs")
-texture_disabled = ExtResource("9_xhhkt")
+wackyText = "NEXT ROUND"
 
-[node name="Label" type="Label" parent="List/Continue"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -6.5
-offset_right = 20.0
-offset_bottom = 16.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_wdg67")
-text = "CONTINUE"
-
-[node name="Quit" type="TextureButton" parent="List"]
+[node name="Quit" parent="List" instance=ExtResource("10_h7k2y")]
 layout_mode = 2
-texture_normal = ExtResource("3_eeg4f")
-texture_pressed = ExtResource("4_huxqs")
-
-[node name="Label" type="Label" parent="List/Quit"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -6.5
-offset_right = 20.0
-offset_bottom = 16.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_wdg67")
-text = "QUIT"
-horizontal_alignment = 1
+wackyText = "MAIN MENU"

@@ -80,6 +80,31 @@ theme_override_fonts/font = ExtResource("2_fk0fv")
 text = "START"
 vertical_alignment = 1
 
+[node name="Settings" type="TextureButton" parent="UI/Screen/Shade/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_i507e")
+texture_pressed = ExtResource("4_vdkb3")
+
+[node name="Label" type="Label" parent="UI/Screen/Shade/Options/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -5.0
+offset_right = 17.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fk0fv")
+text = "OPTIONS
+"
+vertical_alignment = 1
+
 [node name="Quit" type="TextureButton" parent="UI/Screen/Shade/Options"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -106,3 +131,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="UI/Screen/Shade/Options/Start" to="." method="startRun"]
+[connection signal="pressed" from="UI/Screen/Shade/Options/Settings" to="." method="startRun"]

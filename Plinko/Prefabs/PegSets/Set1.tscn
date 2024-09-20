@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://bne1rrbv70c6b"]
+
+[ext_resource type="Script" path="res://Scripts/PegSet.gd" id="1_fn0co"]
+
+[node name="PegSet4" type="Node2D"]
+position = Vector2(0, 272)
+script = ExtResource("1_fn0co")
+clockwise = true
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="0" type="Marker2D" parent="Markers"]
+position = Vector2(0, -32)
+
+[node name="1" type="Marker2D" parent="Markers"]
+position = Vector2(0, 32)
+
+[node name="6" type="Marker2D" parent="Markers"]
+position = Vector2(-64, -32)
+
+[node name="7" type="Marker2D" parent="Markers"]
+position = Vector2(-64, 32)
+
+[node name="4" type="Marker2D" parent="Markers"]
+position = Vector2(64, -32)
+
+[node name="5" type="Marker2D" parent="Markers"]
+position = Vector2(64, 32)
+
+[node name="2" type="Marker2D" parent="Markers"]
+position = Vector2(-32, 0)
+
+[node name="3" type="Marker2D" parent="Markers"]
+position = Vector2(32, 0)
+
+[node name="Pegs" type="Node2D" parent="."]

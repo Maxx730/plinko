@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PerkResource" load_steps=2 format=3 uid="uid://cgtjmbgotp8uu"]
+
+[ext_resource type="Script" path="res://Scripts/PerkResource.gd" id="1_gb2uc"]
+
+[resource]
+script = ExtResource("1_gb2uc")
+perkName = "+ Mult Peg"
+perkDescription = "Adds another multiplication peg.  (Permanant)"
+perkLocation = 0
+perkChance = 1
+perkType = 0
+perkAddType = 4

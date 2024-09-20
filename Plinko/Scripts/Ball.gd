@@ -33,7 +33,7 @@ func _process(delta) -> void:
 			lastHitTime += delta
 
 func _physics_process(_delta) -> void:
-	if not Engine.is_editor_hint():
+	if not Engine.is_editor_hint() and Global.gameSpeed == Game.GAME_SPEED.NORMAL:
 		match Global.gameState:
 			Game.GAME_STATE.FALLING:
 				velocity += Vector2(0, Global.ballGravity)
@@ -109,3 +109,8 @@ func update_trail() -> void:
 		if trailRef.points.size() > trailLength:
 			trailRef.remove_point(0)
 		trailRef.add_point(position)
+
+func toggle_fire(val: bool = false) -> void:
+	var fireRef: GPUParticles2D = get_node('Fire') as GPUParticles2D
+	if fireRef:
+		fireRef.emitting = val

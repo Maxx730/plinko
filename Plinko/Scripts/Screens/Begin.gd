@@ -1,11 +1,11 @@
 class_name Begin extends ScreenContents
 
 @onready var scoreLabel: Label = get_node('Vert/Bottom/List/Goal/Margin/Score') as Label
-@onready var startButton: TextureButton = get_node('Vert/Begin') as TextureButton
+@onready var startButton: WackyButton = get_node('Vert/Begin') as WackyButton
 @onready var roundLabel: Label = get_node('Vert/Top/Round') as Label
 
 func _ready() -> void:
-	startButton.pressed.connect(OnStartPressed)
+	startButton.OnPressed.connect(OnStartPressed)
 
 func RenderScreen() -> void:
 	pass

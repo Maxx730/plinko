@@ -21,3 +21,4 @@ func on_body_exploded(body) -> void:
 		else:
 			Events.OnPegCollided.emit(body, body.position)
 			body.processCollision()
+

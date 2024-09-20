@@ -14,6 +14,7 @@ signal OnTransitionIn()
 
 func _ready() -> void:
 	AddContent()
+	UpdateSize()
 
 func _process(delta: float) -> void:
 	scale = lerp(scale, Vector2.ONE, delta * 5.0)
@@ -36,4 +37,6 @@ func AddContent() -> void:
 			if spawnedContents is ScreenContents:
 				spawnedContents.RenderScreen()
 
+func UpdateSize() -> void:
+	anchors_preset = PRESET_FULL_RECT
 

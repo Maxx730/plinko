@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1ofo7nfnb4e7"]
+
+[ext_resource type="Script" path="res://Scripts/Board/BoardSection.gd" id="1_hfmij"]
+[ext_resource type="Texture2D" uid="uid://cfkkvdvksh6ft" path="res://Assets/BoardTypes/board-type-1.png" id="4_lgy1t"]
+[ext_resource type="PackedScene" uid="uid://dbsv7fnhrsmyg" path="res://Prefabs/PegSets/PegSet.tscn" id="5_41nur"]
+[ext_resource type="PackedScene" uid="uid://bne1rrbv70c6b" path="res://Prefabs/PegSets/Set1.tscn" id="5_prfvo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfink"]
+size = Vector2(318, 647)
+
+[node name="BoardSection" type="Node2D"]
+script = ExtResource("1_hfmij")
+
+[node name="Pegs" type="Node2D" parent="."]
+
+[node name="PegSet" parent="Pegs" instance=ExtResource("5_41nur")]
+rotation = -1384.81
+movement = 1
+
+[node name="PegSet2" parent="Pegs" instance=ExtResource("5_41nur")]
+position = Vector2(-56, 136)
+rotation = 1388.13
+movement = 1
+clockwise = true
+
+[node name="PegSet3" parent="Pegs" instance=ExtResource("5_41nur")]
+position = Vector2(56, 136)
+rotation = 1388.13
+movement = 1
+clockwise = true
+
+[node name="PegSet4" parent="Pegs" instance=ExtResource("5_prfvo")]
+
+[node name="PegSet5" parent="Pegs" instance=ExtResource("5_prfvo")]
+position = Vector2(0, -128)
+
+[node name="Walls" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("4_lgy1t")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 360, 648)
+
+[node name="Frame" type="StaticBody2D" parent="." groups=["Wall"]]
+position = Vector2(0, -12)
+
+[node name="0" type="CollisionPolygon2D" parent="Frame"]
+position = Vector2(0.899994, -20.3)
+polygon = PackedVector2Array(-164, -291, -164, -207, -160, -200, -131, -170, -130, -167, -130, -71, -128, -65, -98, -35, -96, -31, -96, 68, -97, 71, -126, 101, -130, 108, -130, 204, -132, 208, -161, 237, -164, 244, -163.9, 366.3, -197.9, 366.3, -198, -291)
+
+[node name="1" type="CollisionPolygon2D" parent="Frame"]
+position = Vector2(0.899994, -20.3)
+polygon = PackedVector2Array(163, -291, 163, -206, 161, -201, 130, -170, 129, -166, 129, -71, 126, -65, 96, -34, 95, -31, 95, 68, 97, 72, 127, 102, 129, 108, 129, 205, 132, 209, 161, 239, 163, 243, 163.1, 366.3, 183.1, 366.3, 179, -291)
+
+[node name="BottomConnect" type="Marker2D" parent="."]
+position = Vector2(-1, 318)
+
+[node name="TopConnect" type="Marker2D" parent="."]
+position = Vector2(-1, -292)
+
+[node name="Entrance" type="Area2D" parent="."]
+position = Vector2(0, -17)
+
+[node name="Collider" type="CollisionShape2D" parent="Entrance"]
+position = Vector2(2.08165e-12, 16.5)
+shape = SubResource("RectangleShape2D_hfink")
+debug_color = Color(0.709804, 0.266667, 1, 0.419608)

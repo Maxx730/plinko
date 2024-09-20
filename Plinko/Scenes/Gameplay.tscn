@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://djexdjljru8lp" path="res://Prefabs/GoldPeg.tscn" id="5_5birv"]
 [ext_resource type="Script" path="res://Scripts/Despawn.gd" id="7_ffd3c"]
 [ext_resource type="Script" path="res://Scripts/Spawn.gd" id="7_o34mc"]
-[ext_resource type="PackedScene" uid="uid://bwydb8fqxmd4f" path="res://Prefabs/Ball.tscn" id="9_1x746"]
+[ext_resource type="PackedScene" uid="uid://dcp8jvllw6fmi" path="res://Prefabs/Ball.tscn" id="9_1x746"]
 [ext_resource type="FontFile" uid="uid://bg7qwmp5b6lgd" path="res://Assets/honeyblot_caps.otf" id="9_nkfpm"]
 [ext_resource type="Script" path="res://Scripts/Hits.gd" id="10_djgno"]
 [ext_resource type="Script" path="res://Scripts/Round.gd" id="10_f6dpg"]
@@ -43,99 +43,75 @@ script = ExtResource("1_xkcxm")
 
 [node name="Peg" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(0, 42)
-maxHits = 1
 
 [node name="Peg3" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-64, 42)
-maxHits = 1
 
 [node name="Peg4" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-128, 42)
-maxHits = 1
 
 [node name="Peg2" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(64, 42)
-maxHits = 1
 
 [node name="Peg5" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(128, 42)
-maxHits = 1
 
 [node name="Peg6" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(0, 124)
-maxHits = 1
 
 [node name="Peg7" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-64, 124)
-maxHits = 1
 
 [node name="Peg8" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-128, 124)
-maxHits = 1
 
 [node name="Peg9" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(64, 124)
-maxHits = 1
 
 [node name="Peg10" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(128, 124)
-maxHits = 1
 
 [node name="Peg11" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(0, -89)
-maxHits = 1
 
 [node name="Peg13" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-128, -89)
-maxHits = 1
 
 [node name="Peg15" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(128, -89)
-maxHits = 1
 
 [node name="Peg16" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(32, -50)
-maxHits = 1
 
 [node name="Peg17" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-32, -50)
-maxHits = 1
 
 [node name="Peg18" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-96, -50)
-maxHits = 1
 
 [node name="Peg19" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(96, -50)
-maxHits = 1
 
 [node name="Peg24" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(32, -127)
-maxHits = 1
 
 [node name="Peg25" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-32, -127)
-maxHits = 1
 
 [node name="Peg26" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-96, -127)
-maxHits = 1
 
 [node name="Peg27" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(96, -127)
-maxHits = 1
 
 [node name="Peg20" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(32, 83)
-maxHits = 1
 
 [node name="Peg21" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-32, 83)
-maxHits = 1
 
 [node name="Peg22" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(-96, 83)
-maxHits = 1
 
 [node name="Peg28" parent="Board/Pegs" instance=ExtResource("5_5birv")]
 position = Vector2(-32, -6)
@@ -154,14 +130,13 @@ position = Vector2(64, -88)
 
 [node name="Peg23" parent="Board/Pegs" instance=ExtResource("1_yhjjj")]
 position = Vector2(96, 83)
-maxHits = 1
 
 [node name="AnimatedTiles" type="Sprite2D" parent="Board"]
 texture_filter = 1
 texture_repeat = 2
 texture = ExtResource("3_v4h8v")
 region_enabled = true
-region_rect = Rect2(814775, -829743, 330, 490)
+region_rect = Rect2(814868, -829836, 330, 490)
 script = ExtResource("4_uqknk")
 offsetSpeed = 0.561
 offsetDir = Vector2(1, -1)

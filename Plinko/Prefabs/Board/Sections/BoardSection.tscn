@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1hydtlbimesa"]
+
+[ext_resource type="Script" path="res://Scripts/Board/BoardSection.gd" id="1_e0qs8"]
+[ext_resource type="Texture2D" uid="uid://bv4idajlk1kgg" path="res://Assets/tiled-background-texture.png" id="2_kpais"]
+[ext_resource type="Script" path="res://Scripts/Background.gd" id="3_1ql3y"]
+[ext_resource type="Texture2D" uid="uid://b2tcb5efcojxy" path="res://Assets/wall-deco.png" id="4_455pb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdk3y"]
+size = Vector2(609, 19.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6acxj"]
+size = Vector2(607, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfink"]
+size = Vector2(318, 608)
+
+[node name="BoardSection" type="Node2D"]
+script = ExtResource("1_e0qs8")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.0941176, 0.0901961, 0.0862745, 1)
+texture_repeat = 2
+position = Vector2(0, 13)
+texture = ExtResource("2_kpais")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 360, 608)
+script = ExtResource("3_1ql3y")
+backgroundMovementType = 1
+backgroundBaseColor = Color(0.0941176, 0.0901961, 0.0862745, 1)
+
+[node name="Frame" type="StaticBody2D" parent="." groups=["Wall"]]
+
+[node name="Right" type="CollisionShape2D" parent="Frame"]
+position = Vector2(169.5, 14)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qdk3y")
+
+[node name="Left" type="CollisionShape2D" parent="Frame"]
+position = Vector2(-170.5, 13.5)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_6acxj")
+
+[node name="Walls" type="Sprite2D" parent="."]
+position = Vector2(0, 13)
+scale = Vector2(1, 1.01333)
+texture = ExtResource("4_455pb")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 360, 600)
+
+[node name="BottomConnect" type="Marker2D" parent="."]
+position = Vector2(-1, 318)
+
+[node name="TopConnect" type="Marker2D" parent="."]
+position = Vector2(-1, -292)
+
+[node name="Entrance" type="Area2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="Entrance"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_hfink")
+debug_color = Color(0.709804, 0.266667, 1, 0.419608)

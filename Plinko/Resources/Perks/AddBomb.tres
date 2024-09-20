@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PerkResource" load_steps=2 format=3 uid="uid://dmnwgs4magmlb"]
+
+[ext_resource type="Script" path="res://Scripts/PerkResource.gd" id="1_08m8k"]
+
+[resource]
+script = ExtResource("1_08m8k")
+perkName = "+ Bomb"
+perkDescription = "Adds another bomb peg. (Permenant)"
+perkLocation = 0
+perkChance = 2
+perkType = 0
+perkAddType = 5

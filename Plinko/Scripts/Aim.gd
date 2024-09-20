@@ -1,53 +1,35 @@
 @tool
 class_name Aim extends Node2D
 
-@onready var shotCheck: RayCast2D = get_node('Check') as RayCast2D
-@onready var shotTrace: Line2D = get_tree().root.get_node('Game/Board/Effects/Preview') as Line2D
-@onready var shotPoint: Sprite2D = get_node('X') as Sprite2D
+@export var clawClosedSprite: Texture2D
+@export var clawOpenSprite: Texture2D
+
 
 
 var elapsedTime: float
 
 
 func _draw() -> void:
-	pass
+	draw_line(Vector2.ZERO, Vector2(0, 1) * 25.0, Color.RED)
 
 func _process(delta: float) -> void:
-	queue_redraw()
 	if not Engine.is_editor_hint():
-		elapsedTime += delta
-		if Global.gameState == Game.GAME_STATE.DROPPING and Input.is_action_pressed('DropBall'):
-			var mousePoint: Vector2 = get_global_mouse_position() as Vector2
-			var direction: Vector2 = (mousePoint - position).normalized() as Vector2
+		if Global.gameSpeed == Game.GAME_SPEED.NORMAL:
+			if Global.gameState == Game.GAME_STATE.DROPPING:
+				var sinVal: float = sin(elapsedTime * 2.5)
+				position.x = sinVal * 100.0
+				elapsedTime += delta
 
-			rotation = direction.angle()
+				rotation_degrees = sinVal * -12
+				queue_redraw()
+			else:
+				position.x = lerp(position.x, 0.0, delta * 5.0)
+				rotation_degrees = lerp(rotation_degrees, 0.0, delta)
 
-			handle_check()
-			var sizeScale = sin(elapsedTime * 5.0) * 0.5 + 1.0
-			shotPoint.scale = Vector2(sizeScale, sizeScale)
-		else:
-			shotPoint.visible = false
-			shotTrace.points = []
-
-
+			update_sprite(not Global.gameState == Game.GAME_STATE.DROPPING)
 
 
-
-
-
-func handle_check() -> void:
-	if shotTrace:
-		shotTrace.points = emulate_points(global_position + Vector2(16, 0).rotated(rotation), 60)
-
-func emulate_points(initialPosition: Vector2, frames: int) -> Array:
-	var points: Array = []
-	var time_step: float = 1.0 / 60.0
-	var initialVelocity: Vector2 = Vector2(1, 0).rotated(rotation) * Global.launchPower
-
-	for i in range(frames):
-		var time = i * time_step
-		var x = initialPosition.x + initialVelocity.x * time
-		var y = initialPosition.y + initialVelocity.y * time + 0.5 * 100 * time * time
-		points.append(Vector2(x, y))
-
-	return points
+func update_sprite(open: bool) -> void:
+	var clawSprite: Sprite2D = get_node("Claw") as Sprite2D
+	if clawSprite:
+		clawSprite.texture = clawOpenSprite if open else clawClosedSprite

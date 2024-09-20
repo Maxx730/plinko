@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq5euu2yf5yhc"]
+
+[ext_resource type="Script" path="res://Scripts/Sandbox.gd" id="1_56me5"]
+[ext_resource type="Script" path="res://Scripts/PegGroup.gd" id="1_lq5am"]
+
+[node name="Sandbox" type="Node2D"]
+script = ExtResource("1_56me5")
+
+[node name="PegGroup" type="Node2D" parent="."]
+rotation = 59.5059
+script = ExtResource("1_lq5am")
+groupShape = 1
+animate = true
+waveAmplitude = 16.0
+waveFrequency = 6.0
+waveDepth = 11
+waveWidth = 8
+
+[node name="Camera" type="Camera2D" parent="."]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp60iyvuqk0dv"]
+[gd_scene load_steps=11 format=3 uid="uid://dp60iyvuqk0dv"]
 
-[ext_resource type="Script" path="res://Scripts/Perk.gd" id="1_vtmnk"]
+[ext_resource type="Script" path="res://Scripts/UI/Perk.gd" id="1_gh7gq"]
 [ext_resource type="Texture2D" uid="uid://dj30n4mwpja7h" path="res://Assets/card-top.png" id="2_fvfk8"]
 [ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="3_8o041"]
 [ext_resource type="Texture2D" uid="uid://brb8a5el202br" path="res://Assets/card-bottom.png" id="3_44epd"]
+[ext_resource type="Texture2D" uid="uid://bophu7jy5uae0" path="res://Assets/rarity-badge.png" id="3_nn6ht"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgtvp"]
 
@@ -16,17 +17,25 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_us5ms"]
 
 [node name="Perk" type="Button"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(2.08165e-12, 224)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -112.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0, 112)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fgtvp")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_d7nnx")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_6a6t5")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_fqdcq")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_us5ms")
-script = ExtResource("1_vtmnk")
+script = ExtResource("1_gh7gq")
 
 [node name="List" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -46,23 +55,49 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("2_fvfk8")
 
-[node name="Name" type="Label" parent="List/Top"]
+[node name="Margin" type="MarginContainer" parent="List/Top"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.5
-offset_top = -4.0
-offset_right = 23.5
-offset_bottom = 10.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 18
+
+[node name="Items" type="HBoxContainer" parent="List/Top/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Badge" type="TextureRect" parent="List/Top/Margin/Items"]
+modulate = Color(0.631373, 0.27451, 0.741176, 1)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_nn6ht")
+
+[node name="Labels" type="VBoxContainer" parent="List/Top/Margin/Items"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Name" type="Label" parent="List/Top/Margin/Items/Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_8o041")
 text = "Name"
-horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Rarity" type="Label" parent="List/Top/Margin/Items/Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Name"
 vertical_alignment = 1
 uppercase = true
 
@@ -70,21 +105,32 @@ uppercase = true
 layout_mode = 2
 texture = ExtResource("3_44epd")
 
-[node name="Description" type="Label" parent="List/Bottom"]
+[node name="Content" type="VBoxContainer" parent="List/Bottom"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.5
-offset_top = -7.0
-offset_right = 23.5
-offset_bottom = 7.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="List/Bottom/Content"]
+layout_mode = 2
+texture = ExtResource("3_nn6ht")
+stretch_mode = 3
+
+[node name="Margin" type="MarginContainer" parent="List/Bottom/Content"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="Description" type="Label" parent="List/Bottom/Content/Margin"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_8o041")
 text = "Description"
 horizontal_alignment = 1
-vertical_alignment = 1
+autowrap_mode = 2
 uppercase = true

@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://byd2aurpxcfr8"]
+
+[ext_resource type="Script" path="res://Scripts/Board/BoardSection.gd" id="1_jarqm"]
+[ext_resource type="Script" path="res://Scripts/PegSet.gd" id="3_rqk30"]
+[ext_resource type="Texture2D" uid="uid://dliakql6gfnv0" path="res://Assets/BoardTypes/board-type-2.png" id="4_ajs02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfink"]
+size = Vector2(318, 648)
+
+[node name="BoardSection" type="Node2D"]
+script = ExtResource("1_jarqm")
+
+[node name="Walls" type="Sprite2D" parent="."]
+texture = ExtResource("4_ajs02")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 360, 648)
+
+[node name="Frame" type="StaticBody2D" parent="." groups=["Wall"]]
+position = Vector2(0, -7)
+
+[node name="0" type="CollisionPolygon2D" parent="Frame"]
+position = Vector2(0, -24)
+polygon = PackedVector2Array(-164, -291, -164, -207, -161, -200, -131, -170, -130, -165, -130, 232, -132, 238, -162, 269, -164, 274, -164, 356, -231, 356, -229, -292)
+
+[node name="1" type="CollisionPolygon2D" parent="Frame"]
+position = Vector2(0, -24)
+polygon = PackedVector2Array(164, -292, 164, -207, 161, -200, 132, -171, 130, -166, 130, 232, 133, 239, 161, 268, 164, 276, 164, 356, 204, 356, 200, -292)
+
+[node name="BottomConnect" type="Marker2D" parent="."]
+position = Vector2(-1, 318)
+
+[node name="TopConnect" type="Marker2D" parent="."]
+position = Vector2(-1, -292)
+
+[node name="Entrance" type="Area2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="Entrance"]
+shape = SubResource("RectangleShape2D_hfink")
+debug_color = Color(0.709804, 0.266667, 1, 0.419608)
+
+[node name="Pegs" type="Node2D" parent="."]
+
+[node name="PegSet" type="Node2D" parent="Pegs"]
+position = Vector2(0, 104)
+script = ExtResource("3_rqk30")
+
+[node name="Pegs" type="Node2D" parent="Pegs/PegSet"]
+
+[node name="Markers" type="Node2D" parent="Pegs/PegSet"]
+
+[node name="0" type="Marker2D" parent="Pegs/PegSet/Markers"]
+
+[node name="2" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(-48, 0)
+
+[node name="6" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(-96, 0)
+
+[node name="1" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(48, 0)
+
+[node name="8" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(96, 0)
+
+[node name="3" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(24, 32)
+
+[node name="4" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(-24, 32)
+
+[node name="7" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(-72, 32)
+
+[node name="5" type="Marker2D" parent="Pegs/PegSet/Markers"]
+position = Vector2(72, 32)
+
+[node name="PegSet2" type="Node2D" parent="Pegs"]
+position = Vector2(0, -96)
+rotation = -10.8328
+script = ExtResource("3_rqk30")
+movement = 1
+
+[node name="Pegs" type="Node2D" parent="Pegs/PegSet2"]
+
+[node name="Markers" type="Node2D" parent="Pegs/PegSet2"]
+
+[node name="0" type="Marker2D" parent="Pegs/PegSet2/Markers"]
+
+[node name="1" type="Marker2D" parent="Pegs/PegSet2/Markers"]
+position = Vector2(0, -40)
+
+[node name="2" type="Marker2D" parent="Pegs/PegSet2/Markers"]
+position = Vector2(0, -80)
+
+[node name="3" type="Marker2D" parent="Pegs/PegSet2/Markers"]
+position = Vector2(0, -120)

@@ -4,6 +4,7 @@ func _ready() -> void:
 	Events.OnScreenChange.connect(TransitionToScreen)
 	Events.OnHideScreens.connect(HideScreens)
 	Events.OnScreenChange.emit('Loading')
+	Events.OnDesktopModeChanged.connect(OnDesktopModeChanged)
 
 func GetScreenByName(screenName: String) -> Screen:
 	var foundScreen: Screen
@@ -20,6 +21,11 @@ func TransitionToScreen(screenName: String) -> void:
 		chosenScreen.UpdateContents()
 		chosenScreen.visible = true
 
+func OnDesktopModeChanged(mode) -> void:
+	await get_tree().create_timer(1.0).timeout
+	for screen in get_children():
+		if screen is Screen:
+			screen.UpdateSize()
 
 func HideScreens() -> void:
 	for screen in get_children():

@@ -6,14 +6,20 @@ signal OnBallDestroyed()
 signal OnBoardRefresh()
 signal OnGameStateChanged(state: Game.GAME_STATE)
 signal OnGameRoundFinished(score: int)
+signal OnGameRunEnd()
 signal OnResetBoard()
+signal OnBallDropped(ball)
+
+signal OnBoardSectionEntered(section: BoardSection)
 
 # Content Events
 signal OnLoadingComplete()
 signal OnLoadingError()
 
+# Config Events
+signal OnDesktopModeChanged(mode)
+
 signal OnRunStart()
-signal OnBallDropped()
 
 signal OnGameRestart()
 signal OnPhaseChange(phaseName, newState)

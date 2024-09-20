@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3eqi7y5ihkox"]
+[gd_scene load_steps=10 format=3 uid="uid://b3eqi7y5ihkox"]
 
 [ext_resource type="Script" path="res://Scripts/Pegs/Bomb.gd" id="1_cikjn"]
 [ext_resource type="Texture2D" uid="uid://csbduibr10xxi" path="res://Assets/Pegs/peg-bomb.png" id="2_5jln0"]
-[ext_resource type="AudioStream" uid="uid://b2skj1ip6u5jo" path="res://Assets/SFX/Hit_3.wav" id="3_fgg63"]
 [ext_resource type="Texture2D" uid="uid://c0ulc7xlh2j4v" path="res://Assets/blood-particle-texture.png" id="4_6c8by"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5pqav"]
@@ -46,7 +45,6 @@ texture = ExtResource("2_5jln0")
 shape = SubResource("CircleShape2D_5pqav")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_fgg63")
 volume_db = -50.0
 
 [node name="Fuse" type="Node2D" parent="."]

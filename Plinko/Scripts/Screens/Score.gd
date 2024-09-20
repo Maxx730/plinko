@@ -2,14 +2,16 @@ extends ScreenContents
 
 @onready var goalScore: Label = get_node('List/Middle/Margin/Stats/Hor/Goal') as Label
 @onready var actualScore: WackyLabel = get_node('List/Middle/Score') as WackyLabel
-@onready var continueButton: TextureButton = get_node('List/Continue') as TextureButton
-@onready var quitButton: TextureButton = get_node('List/Quit') as TextureButton
+@onready var continueButton: WackyButton = get_node('List/Continue') as WackyButton
+@onready var quitButton: WackyButton = get_node('List/Quit') as WackyButton
+@onready var statusLabel: Label = get_node("List/Status") as Label
+@onready var titleLabel: WackyTitle = get_node("List/Title") as WackyTitle
 
 var targetScore: int
 
 func _ready() -> void:
-	continueButton.pressed.connect(ToBegin)
-	quitButton.pressed.connect(ResetAndQuit)
+	continueButton.OnPressed.connect(ToBegin)
+	quitButton.OnPressed.connect(ResetAndQuit)
 	Events.OnGameRoundFinished.connect(func(score): targetScore = score)
 
 func _process(delta: float) -> void:
@@ -35,10 +37,15 @@ func UpdateScreen() -> void:
 	var hasPassed: bool = (targetScore >= goalRoundScore) as bool
 
 	goalScore.text = str(goalRoundScore)
-	actualScore.text = '000'
+	actualScore.text = "000"
+	titleLabel.wackyText = "SUCCESS" if hasPassed else "GAME OVER"
+	titleLabel.clear_text()
+	titleLabel.generate_text()
 
 	if hasPassed:
 		Global.currentRound += 1
+	else:
+		Events.OnGameRunEnd.emit()
 
 	ToggleButtons(hasPassed)
 

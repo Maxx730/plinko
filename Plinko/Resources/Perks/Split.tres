@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PerkResource" load_steps=2 format=3 uid="uid://b2542k5docodl"]
+
+[ext_resource type="Script" path="res://Scripts/PerkResource.gd" id="1_5uohl"]
+
+[resource]
+script = ExtResource("1_5uohl")
+perkID = 0
+perkName = "Split"
+perkDescription = "Ball splits into two after first collision. (Permanent)"
+perkLocation = 0
+perkChance = 2
+perkType = 0
+perkAddType = 0

@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://baa1mdq3ygrbv"]
+
+[ext_resource type="Script" path="res://Scripts/WackyButton.gd" id="1_fryb0"]
+[ext_resource type="Texture2D" uid="uid://cim5ktjgmbjxm" path="res://Assets/button-normal.png" id="2_nctys"]
+[ext_resource type="Texture2D" uid="uid://3w7wuibitdnk" path="res://Assets/button-pressedl.png" id="3_0l3vi"]
+[ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="4_6k3fk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_48bnt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gcexb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e4xj4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y4qry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5rh4q"]
+
+[node name="Wacky" type="Button"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+offset_top = -57.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_48bnt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gcexb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e4xj4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y4qry")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5rh4q")
+script = ExtResource("1_fryb0")
+
+[node name="Button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -29.0
+offset_right = 117.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_nctys")
+texture_pressed = ExtResource("3_0l3vi")
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -11.5
+offset_right = 37.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-252.5, -153.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_6k3fk")
+text = "START ROUND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Button" to="." method="OnHover"]
+[connection signal="mouse_exited" from="Button" to="." method="OnBlur"]
+[connection signal="pressed" from="Button" to="." method="OnButtonPressed"]

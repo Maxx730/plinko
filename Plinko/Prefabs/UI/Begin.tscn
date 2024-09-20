@@ -1,23 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmutl5u1w6fat"]
+[gd_scene load_steps=9 format=3 uid="uid://bmutl5u1w6fat"]
 
 [ext_resource type="Script" path="res://Scripts/Screens/Begin.gd" id="1_n2fy8"]
 [ext_resource type="FontFile" uid="uid://b57u2jihpq6di" path="res://Assets/m6x11.ttf" id="2_i7xlu"]
+[ext_resource type="Script" path="res://Scripts/Background.gd" id="2_w0utc"]
 [ext_resource type="Texture2D" uid="uid://dj30n4mwpja7h" path="res://Assets/card-top.png" id="3_20wcp"]
-[ext_resource type="Texture2D" uid="uid://cim5ktjgmbjxm" path="res://Assets/button-normal.png" id="4_c50cl"]
 [ext_resource type="Texture2D" uid="uid://bbmdyc1x12ttn" path="res://Assets/target-icon.png" id="5_ae3x8"]
 [ext_resource type="Texture2D" uid="uid://brb8a5el202br" path="res://Assets/card-bottom.png" id="5_itipr"]
-[ext_resource type="Texture2D" uid="uid://3w7wuibitdnk" path="res://Assets/button-pressedl.png" id="5_qfbg3"]
+[ext_resource type="PackedScene" uid="uid://baa1mdq3ygrbv" path="res://Prefabs/UI/WackyButton.tscn" id="6_1v5cn"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h7k0c"]
+load_path = "res://.godot/imported/tiled-background-texture.png-7b3a6347158a177ff1fc712955c6672c.ctex"
 
 [node name="Begin" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n2fy8")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.0941176, 0.0901961, 0.0862745, 1)
+texture_repeat = 2
+texture = SubResource("CompressedTexture2D_h7k0c")
+region_enabled = true
+region_rect = Rect2(7782, 7732.5, 1080, 780)
+script = ExtResource("2_w0utc")
+backgroundMovementType = 1
+backgroundBaseColor = Color(0.0941176, 0.0901961, 0.0862745, 1)
 
 [node name="Vert" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -26,12 +37,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -116.5
-offset_top = -56.0
-offset_right = 116.5
-offset_bottom = 56.0
+offset_left = -120.5
+offset_top = -134.0
+offset_right = 120.5
+offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Top" type="TextureRect" parent="Vert"]
 layout_mode = 2
@@ -99,24 +111,5 @@ text = "000"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Begin" type="TextureButton" parent="Vert"]
+[node name="Begin" parent="Vert" instance=ExtResource("6_1v5cn")]
 layout_mode = 2
-texture_normal = ExtResource("4_c50cl")
-texture_pressed = ExtResource("5_qfbg3")
-
-[node name="Label" type="Label" parent="Vert/Begin"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -6.5
-offset_right = 20.0
-offset_bottom = 16.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_i7xlu")
-text = "BEGIN"

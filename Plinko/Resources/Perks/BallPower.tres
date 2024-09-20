@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bhl005ipg144k"]
-
-[ext_resource type="Script" path="res://Scripts/PerkResource.gd" id="1_ndsd2"]
-
-[resource]
-script = ExtResource("1_ndsd2")
-perkName = "Power"
-perkDescription = "Ball does more power on peg impact."
-perkLocation = 0
